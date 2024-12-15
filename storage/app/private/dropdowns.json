@@ -1,1 +1,38 @@
-[]
+[
+    {
+        "slug": "blog",
+        "title": "Блог",
+        "sort": 0,
+        "icon": null
+    },
+    {
+        "slug": "shop",
+        "title": "Магазин",
+        "sort": 0,
+        "icon": null
+    },
+    {
+        "slug": "tournaments",
+        "title": "Турніри",
+        "sort": 0,
+        "icon": null
+    },
+    {
+        "slug": "settings",
+        "title": "Налаштування",
+        "sort": 0,
+        "icon": null
+    },
+    {
+        "slug": "pages",
+        "title": "Сторінки",
+        "sort": 0,
+        "icon": null
+    },
+    {
+        "slug": "orders",
+        "title": "Замовлення",
+        "sort": 0,
+        "icon": null
+    }
+]

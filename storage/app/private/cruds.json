@@ -1,6 +1,6 @@
 [
     {
-        "title": "Users",
+        "title": "Користувачі",
         "table_name": "users",
         "fields": [
             {
@@ -68,7 +68,7 @@
         "default_order": ""
     },
     {
-        "title": "Roles",
+        "title": "Ролі",
         "table_name": "roles",
         "fields": [
             {
@@ -101,6 +101,1201 @@
         "is_docs": 0,
         "is_statistics": 0,
         "model": "",
+        "default_order": ""
+    },
+    {
+        "table_name": "article_tags",
+        "title": "Теги",
+        "fields": [
+            {
+                "id": 1,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "yes",
+                "db_title": "title",
+                "title": "Название",
+                "type": "text"
+            },
+            {
+                "id": 2,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": "color",
+                "title": "Цвет",
+                "type": "color"
+            }
+        ],
+        "is_dev": 0,
+        "multilanguage": 1,
+        "is_soft_delete": 0,
+        "sort": 10,
+        "dropdown_slug": "blog",
+        "icon": "",
+        "is_docs": 1,
+        "is_statistics": 0,
+        "model": "\\App\\Models\\ArticleTag",
+        "default_order": ""
+    },
+    {
+        "table_name": "article_categories",
+        "title": "Категорії",
+        "fields": [
+            {
+                "id": 1,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "yes",
+                "db_title": "title",
+                "title": "Название",
+                "type": "text"
+            }
+        ],
+        "is_dev": 0,
+        "multilanguage": 1,
+        "is_soft_delete": 0,
+        "sort": 10,
+        "dropdown_slug": "blog",
+        "icon": "",
+        "is_docs": 1,
+        "is_statistics": 0,
+        "model": "\\App\\Models\\ArticleCategory",
+        "default_order": ""
+    },
+    {
+        "table_name": "articles",
+        "title": "Статьи",
+        "fields": [
+            {
+                "id": 1,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "yes",
+                "db_title": "title",
+                "title": "Заголовок",
+                "type": "text"
+            },
+            {
+                "id": 2,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "yes",
+                "db_title": "slug",
+                "title": "Посилання",
+                "type": "text"
+            },
+            {
+                "id": 3,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "yes",
+                "db_title": "date",
+                "title": "Дата",
+                "type": "date"
+            },
+            {
+                "id": 4,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "no",
+                "db_title": "excerpt",
+                "title": "Коротко",
+                "type": "textarea"
+            },
+            {
+                "id": 5,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": "image",
+                "title": "Прев'ю",
+                "type": "photo"
+            },
+            {
+                "id": 6,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": null,
+                "title": "Тег",
+                "type": "relationship",
+                "relationship_count": "single",
+                "relationship_table_name": "article_tags",
+                "relationship_view_field": "title"
+            },
+            {
+                "id": 7,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": null,
+                "title": "Категорія",
+                "type": "relationship",
+                "relationship_count": "single",
+                "relationship_table_name": "article_categories",
+                "relationship_view_field": "title"
+            },
+            {
+                "id": 8,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "no",
+                "db_title": "content",
+                "title": "Контент",
+                "type": "ckeditor"
+            },
+            {
+                "id": 9,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "editable",
+                "db_title": "is_show",
+                "title": "Показувати на сайті?",
+                "type": "checkbox"
+            },
+            {
+                "id": 10,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "no",
+                "db_title": "meta_title",
+                "title": "Meta title",
+                "type": "textarea"
+            },
+            {
+                "id": 11,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "no",
+                "db_title": "meta_description",
+                "title": "Meta description",
+                "type": "textarea"
+            },
+            {
+                "id": 12,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "no",
+                "db_title": "meta_keywords",
+                "title": "Meta keywords",
+                "type": "textarea"
+            }
+        ],
+        "is_dev": 0,
+        "multilanguage": 1,
+        "is_soft_delete": 0,
+        "sort": 10,
+        "dropdown_slug": "blog",
+        "icon": "",
+        "is_docs": 1,
+        "is_statistics": 0,
+        "model": "\\App\\Models\\Article",
+        "default_order": ""
+    },
+    {
+        "table_name": "teammates",
+        "title": "Гравці",
+        "fields": [
+            {
+                "id": 1,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "yes",
+                "db_title": "nickname",
+                "title": "Нікнейм",
+                "type": "text"
+            },
+            {
+                "id": 2,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "yes",
+                "db_title": "slug",
+                "title": "Посилання",
+                "type": "text"
+            },
+            {
+                "id": 3,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "yes",
+                "db_title": "real_name",
+                "title": "Справжнє ім'я",
+                "type": "text"
+            },
+            {
+                "id": 4,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": "photo",
+                "title": "Фото",
+                "type": "photo"
+            },
+            {
+                "id": 5,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": "kda_ration_num",
+                "title": "KDA Ration номер",
+                "type": "text"
+            },
+            {
+                "id": 6,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "no",
+                "db_title": "kda_ration_text",
+                "title": "KDA Ration текст",
+                "type": "text"
+            },
+            {
+                "id": 7,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": "cs_per_min_num",
+                "title": "CS PER MIN номер",
+                "type": "text"
+            },
+            {
+                "id": 8,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "no",
+                "db_title": "cs_per_min_text",
+                "title": "CS PER MIN текст",
+                "type": "text"
+            },
+            {
+                "id": 9,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": "kill_participation_num",
+                "title": "KILL PARTICIPATION номер",
+                "type": "text"
+            },
+            {
+                "id": 10,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "no",
+                "db_title": "kill_participation_text",
+                "title": "KILL PARTICIPATION текст",
+                "type": "text"
+            },
+            {
+                "id": 11,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "no",
+                "db_title": "biography",
+                "title": "Біографія",
+                "type": "ckeditor"
+            },
+            {
+                "id": 15,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": null,
+                "title": "Команда",
+                "type": "relationship",
+                "relationship_count": "single",
+                "relationship_table_name": "teams",
+                "relationship_view_field": "title"
+            },
+            {
+                "id": 12,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "no",
+                "db_title": "meta_title",
+                "title": "Meta title",
+                "type": "textarea"
+            },
+            {
+                "id": 13,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "no",
+                "db_title": "meta_description",
+                "title": "Meta description",
+                "type": "textarea"
+            },
+            {
+                "id": 14,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "no",
+                "db_title": "meta_keywords",
+                "title": "Meta keywords",
+                "type": "textarea"
+            }
+        ],
+        "is_dev": 0,
+        "multilanguage": 1,
+        "is_soft_delete": 0,
+        "sort": 10,
+        "dropdown_slug": "tournaments",
+        "icon": "",
+        "is_docs": 1,
+        "is_statistics": 0,
+        "model": "\\App\\Models\\Teammate",
+        "default_order": ""
+    },
+    {
+        "table_name": "teams",
+        "title": "Команди",
+        "fields": [
+            {
+                "id": 1,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "yes",
+                "db_title": "title",
+                "title": "Назва",
+                "type": "text"
+            },
+            {
+                "id": 2,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "yes",
+                "db_title": "slug",
+                "title": "Посилання",
+                "type": "text"
+            },
+            {
+                "id": 3,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": "logo",
+                "title": "Лого",
+                "type": "photo"
+            },
+            {
+                "id": 4,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "no",
+                "db_title": "description",
+                "title": "Опис",
+                "type": "ckeditor"
+            },
+            {
+                "id": 5,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "no",
+                "db_title": null,
+                "title": "Гравці",
+                "type": "relationship",
+                "relationship_count": "editable",
+                "relationship_table_name": "teammates"
+            },
+            {
+                "id": 6,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "no",
+                "db_title": "meta_title",
+                "title": "Meta title",
+                "type": "textarea"
+            },
+            {
+                "id": 7,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "no",
+                "db_title": "meta_description",
+                "title": "Meta description",
+                "type": "textarea"
+            },
+            {
+                "id": 8,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "no",
+                "db_title": "meta_keywords",
+                "title": "Meta keywords",
+                "type": "textarea"
+            }
+        ],
+        "is_dev": 0,
+        "multilanguage": 1,
+        "is_soft_delete": 0,
+        "sort": 10,
+        "dropdown_slug": "tournaments",
+        "icon": "",
+        "is_docs": 1,
+        "is_statistics": 0,
+        "model": "\\App\\Models\\Team",
+        "default_order": ""
+    },
+    {
+        "table_name": "tournaments",
+        "title": "Турніри",
+        "fields": [
+            {
+                "id": 1,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "yes",
+                "db_title": "title",
+                "title": "Назва",
+                "type": "text"
+            },
+            {
+                "id": 2,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "yes",
+                "db_title": "slug",
+                "title": "Посилання",
+                "type": "text"
+            },
+            {
+                "id": 3,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "no",
+                "db_title": "description",
+                "title": "Опис",
+                "type": "ckeditor"
+            },
+            {
+                "id": 4,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "no",
+                "db_title": "meta_title",
+                "title": "Meta title",
+                "type": "textarea"
+            },
+            {
+                "id": 5,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "no",
+                "db_title": "meta_description",
+                "title": "Meta description",
+                "type": "textarea"
+            },
+            {
+                "id": 6,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "no",
+                "db_title": "meta_keywords",
+                "title": "Meta keywords",
+                "type": "textarea"
+            }
+        ],
+        "is_dev": 0,
+        "multilanguage": 1,
+        "is_soft_delete": 0,
+        "sort": 10,
+        "dropdown_slug": "tournaments",
+        "icon": "",
+        "is_docs": 1,
+        "is_statistics": 0,
+        "model": "\\App\\Models\\Tournament",
+        "default_order": ""
+    },
+    {
+        "table_name": "tournament_matches",
+        "title": "Матчі",
+        "fields": [
+            {
+                "id": 2,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "yes",
+                "db_title": "datetime",
+                "title": "Час",
+                "type": "datetime"
+            },
+            {
+                "id": 3,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "yes",
+                "db_title": "result",
+                "title": "Результат",
+                "type": "text"
+            },
+            {
+                "id": 4,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": null,
+                "title": "Команди",
+                "type": "relationship",
+                "relationship_count": "many",
+                "relationship_table_name": "teams",
+                "relationship_view_field": "title"
+            }
+        ],
+        "is_dev": 0,
+        "multilanguage": 1,
+        "is_soft_delete": 0,
+        "sort": 10,
+        "dropdown_slug": "tournaments",
+        "icon": "",
+        "is_docs": 1,
+        "is_statistics": 0,
+        "model": "\\App\\Models\\TournamentMatch",
+        "default_order": ""
+    },
+    {
+        "table_name": "product_categories",
+        "title": "Категорії",
+        "fields": [
+            {
+                "id": 1,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "yes",
+                "db_title": "title",
+                "title": "Назва",
+                "type": "text"
+            }
+        ],
+        "is_dev": 0,
+        "multilanguage": 1,
+        "is_soft_delete": 0,
+        "sort": 10,
+        "dropdown_slug": "shop",
+        "icon": "",
+        "is_docs": 1,
+        "is_statistics": 0,
+        "model": "\\App\\Models\\ProductCategory",
+        "default_order": ""
+    },
+    {
+        "table_name": "product_tags",
+        "title": "Теги",
+        "fields": [
+            {
+                "id": 1,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "yes",
+                "db_title": "title",
+                "title": "Назва",
+                "type": "text"
+            },
+            {
+                "id": 2,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": "color",
+                "title": "Колір",
+                "type": "color"
+            }
+        ],
+        "is_dev": 0,
+        "multilanguage": 1,
+        "is_soft_delete": 0,
+        "sort": 10,
+        "dropdown_slug": "shop",
+        "icon": "",
+        "is_docs": 1,
+        "is_statistics": 0,
+        "model": "\\App\\Models\\ProductTag",
+        "default_order": ""
+    },
+    {
+        "table_name": "platforms",
+        "title": "Платформи",
+        "fields": [
+            {
+                "id": 1,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "yes",
+                "db_title": "title",
+                "title": "Назва",
+                "type": "text"
+            }
+        ],
+        "is_dev": 0,
+        "multilanguage": 1,
+        "is_soft_delete": 0,
+        "sort": 10,
+        "dropdown_slug": "shop",
+        "icon": "",
+        "is_docs": 1,
+        "is_statistics": 0,
+        "model": "\\App\\Models\\Platform",
+        "default_order": ""
+    },
+    {
+        "table_name": "genres",
+        "title": "Жанри",
+        "fields": [
+            {
+                "id": 1,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "yes",
+                "db_title": "title",
+                "title": "Назва",
+                "type": "text"
+            }
+        ],
+        "is_dev": 0,
+        "multilanguage": 1,
+        "is_soft_delete": 0,
+        "sort": 10,
+        "dropdown_slug": "shop",
+        "icon": "",
+        "is_docs": 1,
+        "is_statistics": 0,
+        "model": "\\App\\Models\\Genre",
+        "default_order": ""
+    },
+    {
+        "table_name": "products",
+        "title": "Товари",
+        "fields": [
+            {
+                "id": 1,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "yes",
+                "db_title": "title",
+                "title": "Назва",
+                "type": "text"
+            },
+            {
+                "id": 2,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "yes",
+                "db_title": "slug",
+                "title": "Посилання",
+                "type": "text"
+            },
+            {
+                "id": 3,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "yes",
+                "db_title": "price",
+                "title": "Вартість",
+                "type": "money"
+            },
+            {
+                "id": 4,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "yes",
+                "db_title": "old_price",
+                "title": "Стара вартість",
+                "type": "money"
+            },
+            {
+                "id": 5,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "yes",
+                "db_title": "sku",
+                "title": "SKU",
+                "type": "text"
+            },
+            {
+                "id": 6,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "no",
+                "db_title": "excerpt",
+                "title": "Коротки опис",
+                "type": "textarea"
+            },
+            {
+                "id": 7,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": "release_date",
+                "title": "Дата релізу",
+                "type": "date"
+            },
+            {
+                "id": 8,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "no",
+                "db_title": "pegi_rating",
+                "title": "Вік",
+                "type": "text"
+            },
+            {
+                "id": 9,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": null,
+                "title": "Жанри",
+                "type": "relationship",
+                "relationship_count": "many",
+                "relationship_table_name": "genres",
+                "relationship_view_field": "title"
+            },
+            {
+                "id": 10,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": null,
+                "title": "Категорії",
+                "type": "relationship",
+                "relationship_count": "many",
+                "relationship_table_name": "product_categories",
+                "relationship_view_field": "title"
+            },
+            {
+                "id": 11,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": null,
+                "title": "Теги",
+                "type": "relationship",
+                "relationship_count": "many",
+                "relationship_table_name": "product_tags",
+                "relationship_view_field": "title"
+            },
+            {
+                "id": 18,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": null,
+                "title": "Платформи",
+                "type": "relationship",
+                "relationship_count": "many",
+                "relationship_table_name": "platforms",
+                "relationship_view_field": "title"
+            },
+            {
+                "id": 12,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": "image",
+                "title": "Зображення",
+                "type": "photo"
+            },
+            {
+                "id": 13,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": "gallery",
+                "title": "Галерея",
+                "type": "gallery"
+            },
+            {
+                "id": 14,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": "installer",
+                "title": "Файл",
+                "type": "file"
+            },
+            {
+                "id": 19,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "editable",
+                "db_title": "is_active",
+                "title": "Активний?",
+                "type": "checkbox"
+            },
+            {
+                "id": 15,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "no",
+                "db_title": "meta_title",
+                "title": "Meta title",
+                "type": "textarea"
+            },
+            {
+                "id": 16,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "no",
+                "db_title": "meta_description",
+                "title": "Meta description",
+                "type": "textarea"
+            },
+            {
+                "id": 17,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "no",
+                "db_title": "meta_keywords",
+                "title": "Meta keywords",
+                "type": "textarea"
+            }
+        ],
+        "is_dev": 0,
+        "multilanguage": 1,
+        "is_soft_delete": 0,
+        "sort": 10,
+        "dropdown_slug": "shop",
+        "icon": "",
+        "is_docs": 1,
+        "is_statistics": 0,
+        "model": "\\App\\Models\\Product",
+        "default_order": ""
+    },
+    {
+        "table_name": "reviews",
+        "title": "Відгуки",
+        "fields": [
+            {
+                "id": 1,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "yes",
+                "db_title": null,
+                "title": "Юзер",
+                "type": "relationship",
+                "relationship_count": "single",
+                "relationship_table_name": "users",
+                "relationship_view_field": "name"
+            },
+            {
+                "id": 2,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "yes",
+                "db_title": "rating",
+                "title": "Рейтінг",
+                "type": "number"
+            },
+            {
+                "id": 3,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "yes",
+                "db_title": "date",
+                "title": "Дата",
+                "type": "date"
+            },
+            {
+                "id": 4,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": "text",
+                "title": "Текст",
+                "type": "textarea"
+            },
+            {
+                "id": 5,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": null,
+                "title": "Товар",
+                "type": "relationship",
+                "relationship_count": "single",
+                "relationship_table_name": "products",
+                "relationship_view_field": "title"
+            },
+            {
+                "id": 6,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": null,
+                "title": "Стаття",
+                "type": "relationship",
+                "relationship_count": "single",
+                "relationship_table_name": "articles",
+                "relationship_view_field": "title"
+            }
+        ],
+        "is_dev": 0,
+        "multilanguage": 0,
+        "is_soft_delete": 0,
+        "sort": 10,
+        "dropdown_slug": "",
+        "icon": "",
+        "is_docs": 1,
+        "is_statistics": 0,
+        "model": "\\App\\Models\\Review",
+        "default_order": ""
+    },
+    {
+        "table_name": "callbacks",
+        "title": "Контактна форма",
+        "fields": [
+            {
+                "id": 1,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "yes",
+                "db_title": "email",
+                "title": "Email",
+                "type": "text"
+            },
+            {
+                "id": 2,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "yes",
+                "db_title": "name",
+                "title": "Имя",
+                "type": "text"
+            },
+            {
+                "id": 3,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "yes",
+                "db_title": "date",
+                "title": "Дата",
+                "type": "datetime"
+            },
+            {
+                "id": 4,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": "text",
+                "title": "Письмо",
+                "type": "textarea"
+            }
+        ],
+        "is_dev": 0,
+        "multilanguage": 0,
+        "is_soft_delete": 0,
+        "sort": 10,
+        "dropdown_slug": "",
+        "icon": "",
+        "is_docs": 1,
+        "is_statistics": 0,
+        "model": "\\App\\Models\\Callback",
+        "default_order": ""
+    },
+    {
+        "table_name": "orders",
+        "title": "Замовлення",
+        "fields": [
+            {
+                "id": 1,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": "name",
+                "title": "Ім'я",
+                "type": "text"
+            },
+            {
+                "id": 2,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": "surname",
+                "title": "Прізвище",
+                "type": "text"
+            },
+            {
+                "id": 3,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "yes",
+                "db_title": "email",
+                "title": "Емейл",
+                "type": "text",
+                "remark": null
+            },
+            {
+                "id": 4,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "yes",
+                "db_title": "total",
+                "title": "Тотал",
+                "type": "text"
+            },
+            {
+                "id": 5,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "yes",
+                "db_title": "is_paid",
+                "title": "Оплачено?",
+                "type": "checkbox"
+            },
+            {
+                "id": 6,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "yes",
+                "db_title": "date",
+                "title": "Дата",
+                "type": "datetime"
+            }
+        ],
+        "is_dev": 0,
+        "multilanguage": 0,
+        "is_soft_delete": 0,
+        "sort": 10,
+        "dropdown_slug": "orders",
+        "icon": "",
+        "is_docs": 1,
+        "is_statistics": 0,
+        "model": "\\App\\Models\\Order",
+        "default_order": ""
+    },
+    {
+        "table_name": "order_products",
+        "title": "Товари в замовленні",
+        "fields": [
+            {
+                "id": 1,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": "image",
+                "title": "Зображення",
+                "type": "photo"
+            },
+            {
+                "id": 2,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "yes",
+                "db_title": "title",
+                "title": "Назва",
+                "type": "text"
+            },
+            {
+                "id": 3,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": null,
+                "title": "Товар",
+                "type": "relationship",
+                "relationship_count": "single",
+                "relationship_table_name": "products",
+                "relationship_view_field": "title"
+            }
+        ],
+        "is_dev": 1,
+        "multilanguage": 0,
+        "is_soft_delete": 0,
+        "sort": 10,
+        "dropdown_slug": "orders",
+        "icon": "",
+        "is_docs": 1,
+        "is_statistics": 0,
+        "model": "\\App\\Models\\OrderProduct",
         "default_order": ""
     }
 ]
