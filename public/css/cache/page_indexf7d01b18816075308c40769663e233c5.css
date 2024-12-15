@@ -94,9 +94,6 @@ img[srcset] {
 } 
 
 
- 
-
-
  }@media (max-width: 1600px) and (min-width: 1000px) { :root {
 	--column-width: 86.1111vw;
 	--offset: calc(50% - (var(--column-width) / 2));
@@ -191,9 +188,6 @@ img[srcset] {
 #loader path {
     fill: var(--color-second);
 } 
-
-
- 
 
 
  }@media (min-width: calc(494px)) and (max-width: calc(1000px)) {
@@ -305,9 +299,6 @@ img[srcset] {
 #loader path {
     fill: var(--color-second);
 } 
-
-
- 
 
 
  }

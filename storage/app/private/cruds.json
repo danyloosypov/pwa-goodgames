@@ -1148,6 +1148,29 @@
                 "relationship_count": "single",
                 "relationship_table_name": "articles",
                 "relationship_view_field": "title"
+            },
+            {
+                "id": 7,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": null,
+                "title": "Батьківський відгук",
+                "type": "relationship",
+                "relationship_count": "single",
+                "relationship_table_name": "reviews",
+                "relationship_view_field": "text"
+            },
+            {
+                "id": 8,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": "admin_reply",
+                "title": "Відповідь адміна",
+                "type": "textarea"
             }
         ],
         "is_dev": 0,

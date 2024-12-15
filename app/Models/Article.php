@@ -7,6 +7,7 @@ use App\Models\ArticleTag;
 use App\Models\ArticleCategory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Article extends MultilanguageModel
 {
@@ -47,4 +48,20 @@ class Article extends MultilanguageModel
 	}
 
     #endregion
+
+	protected static function booted()
+    {
+        static::addGlobalScope('order', function (Builder $builder) {
+            $builder->orderBy('date', 'DESC');
+        });
+
+        static::addGlobalScope('is_show', function (Builder $builder) {
+            $builder->where('is_show', 1);
+        });
+    }
+
+	public function scopeWithCategoryAndTag(Builder $query)
+    {
+        $query->with(['articleCategory', 'articleTag']);
+    }
 }

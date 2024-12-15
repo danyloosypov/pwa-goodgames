@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Article;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Review extends Model
 {
@@ -21,17 +22,27 @@ class Review extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'id_users',
+		'id_users',
 		'rating',
 		'date',
 		'text',
 		'id_products',
 		'id_articles',
+		'id_reviews',
+		'admin_reply',
+	];
+
+	protected $attributes = [
+		'rating' => 5,
+		'id_products' => 0,
+		'id_articles' => 0,
+		'id_reviews' => 0,
+		'admin_reply' => '',
     ];
 
     #region Relationships
-    
-    public function user() 
+
+	public function user() 
 	{
 		return $this->belongsTo(User::class, 'id_users');
 	}
@@ -46,5 +57,17 @@ class Review extends Model
 		return $this->belongsTo(Article::class, 'id_articles');
 	}
 
-    #endregion
+	public function review() 
+	{
+		return $this->belongsTo(Review::class, 'id_reviews');
+	}
+
+	#endregion
+
+	protected static function booted()
+    {
+        static::addGlobalScope('order', function (Builder $builder) {
+            $builder->orderBy('date', 'DESC');
+        });
+    }
 }

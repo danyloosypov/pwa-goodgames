@@ -21,6 +21,8 @@ return new class extends Migration
 			$table->text("text");
 			$table->unsignedBigInteger("id_products");
 			$table->unsignedBigInteger("id_articles");
+			$table->unsignedBigInteger("id_reviews");
+			$table->text("admin_reply");
 			$table->timestamp("created_at")->default(\DB::raw("CURRENT_TIMESTAMP"));
 			$table->timestamp("updated_at")->default(\DB::raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
         });

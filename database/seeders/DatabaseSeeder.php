@@ -18,6 +18,7 @@ use Database\Seeders\TeammatesSeeder;
 use Database\Seeders\TeamsSeeder;
 use Database\Seeders\TournamentMatchesSeeder;
 use Database\Seeders\TournamentsSeeder;
+use Database\Seeders\ReviewSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -44,6 +45,8 @@ class DatabaseSeeder extends Seeder
             TeammatesSeeder::class,  // Teammates Seeder
             TournamentsSeeder::class,  // Tournaments Seeder
             TournamentMatchesSeeder::class,  // Tournament Matches Seeder
+
+            ReviewSeeder::class,
         ]);
     }
 }

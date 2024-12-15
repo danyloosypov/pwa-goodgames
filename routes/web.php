@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\SitemapController;
 
 /*
@@ -26,4 +27,6 @@ Route::group([
 ], function(){
 
 	Route::get('/', [PageController::class, 'index']);
+	Route::get('/blog', [BlogController::class, 'index'])->name('blog');
+	Route::get('/blog/{article:slug}', [BlogController::class, 'show'])->name('article');
 });

@@ -10,9 +10,7 @@
 		{!! SEO::robots() !!}
 		{!! SEO::linkPrev() !!}
 		{!! SEO::linkNext() !!}
-		
-		%convertor%
-        
+		        
 	</head>
 
 	<body style="--width: 0;">

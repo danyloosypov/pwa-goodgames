@@ -26,3 +26,39 @@
 	var is_mobile = {{ Platform::mobile() ? 'true' : 'false'}}
 	var lang = document.querySelector('html').getAttribute('lang')
 </script>
+
+<!-- START: Styles -->
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7cOpen+Sans:400,700" rel="stylesheet" type="text/css">
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="assets/bootstrap/dist/css/bootstrap.min.css">
+
+<!-- FontAwesome -->
+<script defer src="assets/fontawesome-free/js/all.js"></script>
+<script defer src="assets/fontawesome-free/js/v4-shims.js"></script>
+
+<!-- IonIcons -->
+<link rel="stylesheet" href="assets/ionicons/css/ionicons.min.css">
+
+<!-- Flickity -->
+<link rel="stylesheet" href="assets/flickity/dist/flickity.min.css">
+
+<!-- Photoswipe -->
+<link rel="stylesheet" type="text/css" href="assets/photoswipe/dist/photoswipe.css">
+<link rel="stylesheet" type="text/css" href="assets/photoswipe/dist/default-skin/default-skin.css">
+
+<!-- Seiyria Bootstrap Slider -->
+<link rel="stylesheet" href="assets/bootstrap-slider/dist/css/bootstrap-slider.min.css">
+
+<!-- Summernote -->
+<link rel="stylesheet" type="text/css" href="assets/summernote/dist/summernote-bs4.css">
+
+<!-- GoodGames -->
+<link rel="stylesheet" href="goodcss/goodgames.css">
+
+<!-- END: Styles -->
+
+<!-- jQuery -->
+<script src="assets/jquery/dist/jquery.min.js"></script>
