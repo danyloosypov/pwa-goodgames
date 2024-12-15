@@ -18,17 +18,21 @@ class Tournament extends MultilanguageModel
      * @var array<int, string>
      */
     protected $fillable = [
-        'title',
+		'title',
 		'slug',
 		'description',
+		'date',
 		'meta_title',
 		'meta_description',
 		'meta_keywords',
-    ];
+	];
 
     #region Relationships
-    
-    
 
-    #endregion
+	public function tournamentMatches() 
+	{
+		return $this->hasMany(TournamentMatch::class, 'id_tournaments');
+	}
+
+	#endregion
 }

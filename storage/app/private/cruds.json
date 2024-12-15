@@ -533,6 +533,16 @@
                 "relationship_table_name": "teammates"
             },
             {
+                "id": 9,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": "team_photo",
+                "title": "Фото команди",
+                "type": "photo"
+            },
+            {
                 "id": 6,
                 "required": "optional",
                 "is_visible": true,
@@ -607,6 +617,28 @@
                 "db_title": "description",
                 "title": "Опис",
                 "type": "ckeditor"
+            },
+            {
+                "id": 7,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "yes",
+                "db_title": "date",
+                "title": "Дата",
+                "type": "date"
+            },
+            {
+                "id": 8,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": null,
+                "title": "Матчі",
+                "type": "relationship",
+                "relationship_count": "editable",
+                "relationship_table_name": "tournament_matches"
             },
             {
                 "id": 4,
@@ -685,6 +717,19 @@
                 "type": "relationship",
                 "relationship_count": "many",
                 "relationship_table_name": "teams",
+                "relationship_view_field": "title"
+            },
+            {
+                "id": 5,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "yes",
+                "db_title": null,
+                "title": "Турнір",
+                "type": "relationship",
+                "relationship_count": "single",
+                "relationship_table_name": "tournaments",
                 "relationship_view_field": "title"
             }
         ],

@@ -19,21 +19,22 @@ class Team extends MultilanguageModel
      * @var array<int, string>
      */
     protected $fillable = [
-        'title',
+		'title',
 		'slug',
 		'logo',
 		'description',
+		'team_photo',
 		'meta_title',
 		'meta_description',
 		'meta_keywords',
-    ];
+	];
 
     #region Relationships
-    
-    public function teammates() 
+
+	public function teammates() 
 	{
 		return $this->hasMany(Teammate::class, 'id_teams');
 	}
 
-    #endregion
+	#endregion
 }

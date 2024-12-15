@@ -24,6 +24,7 @@ return new class extends Migration
 			$table->string("slug");
 			$table->string("logo");
 			$table->text("description");
+			$table->string("team_photo");
 			$table->text("meta_title");
 			$table->text("meta_description");
 			$table->text("meta_keywords");

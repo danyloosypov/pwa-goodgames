@@ -11,7 +11,7 @@ class TournamentMatch extends MultilanguageModel
 {
     use HasFactory;
 
-    protected $table = 'matches';
+    protected $table = 'tournament_matches';
 
     /**
      * The attributes that are mass assignable.
@@ -21,6 +21,7 @@ class TournamentMatch extends MultilanguageModel
     protected $fillable = [
 		'datetime',
 		'result',
+		'id_tournaments',
 	];
 
     #region Relationships
@@ -28,6 +29,11 @@ class TournamentMatch extends MultilanguageModel
 	public function teams() 
 	{
 		return $this->belongsToMany(Team::class, 'tournament_matches_teams', 'id_tournament_matches', 'id_teams');
+	}
+
+	public function tournament() 
+	{
+		return $this->belongsTo(Tournament::class, 'id_tournaments');
 	}
 
 	#endregion

@@ -22,6 +22,7 @@ return new class extends Migration
 			$table->id();
 			$table->dateTime("datetime")->default("2000-01-01 00:00:00"); // some DBs have errors with the default 0000-00-00 00:00:00
 			$table->string("result");
+			$table->unsignedBigInteger("id_tournaments");
 			$table->timestamp("created_at")->default(\DB::raw("CURRENT_TIMESTAMP"));
 			$table->timestamp("updated_at")->default(\DB::raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
 			});
