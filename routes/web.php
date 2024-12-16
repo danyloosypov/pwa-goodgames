@@ -29,4 +29,8 @@ Route::group([
 	Route::get('/', [PageController::class, 'index']);
 	Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 	Route::get('/blog/{article:slug}', [BlogController::class, 'show'])->name('article');
+
+	Route::fallback(function () {
+        return view("errors.404");
+    });
 });

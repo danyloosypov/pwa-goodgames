@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Article;
+use App\Models\ArticleCategory;
+use App\Models\Product;
 
 class BlogController extends Controller
 {
