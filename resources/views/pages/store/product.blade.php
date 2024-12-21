@@ -96,7 +96,7 @@
                                 <!-- START: Add to Cart -->
                                 <div class="nk-gap-2"></div>
                                 <form action="#" class="nk-product-addtocart">
-                                    <div class="nk-product-price">€ 32.00</div>
+                                    <div class="nk-product-price">₴ 32.00</div>
                                     <div class="nk-gap-1"></div>
                                     <div class="input-group">
                                         <input type="number" class="form-control" value="1" min="1" max="21">
@@ -356,7 +356,7 @@
                                         <i class="far fa-star"></i>
                                     </div>
                                     <div class="nk-gap-1"></div>
-                                    <div class="nk-product-price">€ 14.00</div>
+                                    <div class="nk-product-price">₴ 14.00</div>
                                 </div>
                             </div>
                         </div>
@@ -378,7 +378,7 @@
                                         <i class="fas fa-star-half"></i>
                                     </div>
                                     <div class="nk-gap-1"></div>
-                                    <div class="nk-product-price">€ 20.00</div>
+                                    <div class="nk-product-price">₴ 20.00</div>
                                 </div>
                             </div>
                         </div>
@@ -400,7 +400,7 @@
                                         <i class="fa fa-star"></i>
                                     </div>
                                     <div class="nk-gap-1"></div>
-                                    <div class="nk-product-price">€ 23.00</div>
+                                    <div class="nk-product-price">₴ 23.00</div>
                                 </div>
                             </div>
                         </div>
@@ -422,7 +422,7 @@
                                         <i class="far fa-star"></i>
                                     </div>
                                     <div class="nk-gap-1"></div>
-                                    <div class="nk-product-price">€ 32.00</div>
+                                    <div class="nk-product-price">₴ 32.00</div>
                                 </div>
                             </div>
                         </div>
@@ -444,7 +444,7 @@
                                         <i class="far fa-star"></i>
                                     </div>
                                     <div class="nk-gap-1"></div>
-                                    <div class="nk-product-price">€ 14.00</div>
+                                    <div class="nk-product-price">₴ 14.00</div>
                                 </div>
                             </div>
                         </div>
@@ -466,7 +466,7 @@
                                         <i class="fas fa-star-half"></i>
                                     </div>
                                     <div class="nk-gap-1"></div>
-                                    <div class="nk-product-price">€ 20.00</div>
+                                    <div class="nk-product-price">₴ 20.00</div>
                                 </div>
                             </div>
                         </div>
@@ -545,8 +545,8 @@
                                     <input type="text" name="price-filter" data-slider-min="0" data-slider-max="1800" data-slider-step="1" data-slider-value="[200, 1200]" data-slider-tooltip="hide">
                                     <div class="nk-gap"></div>
                                     <div>
-                                        <div class="text-white mt-4 float-left"> PRICE: <strong class="text-main-1">€ <span class="nk-input-slider-value-0"></span>
-                                            </strong> - <strong class="text-main-1">€ <span class="nk-input-slider-value-1"></span>
+                                        <div class="text-white mt-4 float-left"> PRICE: <strong class="text-main-1">₴ <span class="nk-input-slider-value-0"></span>
+                                            </strong> - <strong class="text-main-1">₴ <span class="nk-input-slider-value-1"></span>
                                             </strong>
                                         </div>
                                         <a href="#" class="nk-btn nk-btn-rounded nk-btn-color-white float-right">Apply</a>
@@ -637,7 +637,7 @@
                                         <i class="fa fa-star"></i>
                                         <i class="far fa-star"></i>
                                     </div>
-                                    <div class="nk-product-price">€ 23.00</div>
+                                    <div class="nk-product-price">₴ 23.00</div>
                                 </div>
                                 <div class="nk-widget-post">
                                     <a href="store-product.html" class="nk-post-image">
@@ -653,7 +653,7 @@
                                         <i class="far fa-star"></i>
                                         <i class="far fa-star"></i>
                                     </div>
-                                    <div class="nk-product-price">€ 32.00</div>
+                                    <div class="nk-product-price">₴ 32.00</div>
                                 </div>
                                 <div class="nk-widget-post">
                                     <a href="store-product.html" class="nk-post-image">
@@ -669,7 +669,7 @@
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
                                     </div>
-                                    <div class="nk-product-price">€ 14.00</div>
+                                    <div class="nk-product-price">₴ 14.00</div>
                                 </div>
                             </div>
                         </div>

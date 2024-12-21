@@ -120,15 +120,15 @@
                         <tbody>
                             <tr>
                                 <td class="nk-product-cart-title"> However, I have reason &times; 1 </td>
-                                <td class="nk-product-cart-total"> € 32.00 </td>
+                                <td class="nk-product-cart-total"> ₴ 32.00 </td>
                             </tr>
                             <tr>
                                 <td class="nk-product-cart-title"> She was bouncing &times; 1 </td>
-                                <td class="nk-product-cart-total"> € 20.00 </td>
+                                <td class="nk-product-cart-total"> ₴ 20.00 </td>
                             </tr>
                             <tr class="nk-store-cart-totals-subtotal">
                                 <td> Subtotal </td>
-                                <td> € 52.00 </td>
+                                <td> ₴ 52.00 </td>
                             </tr>
                             <tr class="nk-store-cart-totals-shipping">
                                 <td> Shipping </td>
@@ -136,7 +136,7 @@
                             </tr>
                             <tr class="nk-store-cart-totals-total">
                                 <td> Total </td>
-                                <td> € 52.00 </td>
+                                <td> ₴ 52.00 </td>
                             </tr>
                         </tbody>
                     </table>

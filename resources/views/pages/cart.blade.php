@@ -46,7 +46,7 @@
                                 <td class="nk-product-cart-price">
                                     <h5 class="h6">Price:</h5>
                                     <div class="nk-gap-1"></div>
-                                    <strong>€ 32.00</strong>
+                                    <strong>₴ 32.00</strong>
                                 </td>
                                 <td class="nk-product-cart-quantity">
                                     <h5 class="h6">Quantity:</h5>
@@ -58,7 +58,7 @@
                                 <td class="nk-product-cart-total">
                                     <h5 class="h6">Total:</h5>
                                     <div class="nk-gap-1"></div>
-                                    <strong>€ 32.00</strong>
+                                    <strong>₴ 32.00</strong>
                                 </td>
                                 <td class="nk-product-cart-remove">
                                     <a href="#">
@@ -82,7 +82,7 @@
                                 <td class="nk-product-cart-price">
                                     <h5 class="h6">Price:</h5>
                                     <div class="nk-gap-1"></div>
-                                    <strong>€ 20.00</strong>
+                                    <strong>₴ 20.00</strong>
                                 </td>
                                 <td class="nk-product-cart-quantity">
                                     <h5 class="h6">Quantity:</h5>
@@ -94,7 +94,7 @@
                                 <td class="nk-product-cart-total">
                                     <h5 class="h6">Total:</h5>
                                     <div class="nk-gap-1"></div>
-                                    <strong>€ 20.00</strong>
+                                    <strong>₴ 20.00</strong>
                                 </td>
                                 <td class="nk-product-cart-remove">
                                     <a href="#">
@@ -142,7 +142,7 @@
                             <tbody>
                                 <tr class="nk-store-cart-totals-subtotal">
                                     <td> Subtotal </td>
-                                    <td> € 52.00 </td>
+                                    <td> ₴ 52.00 </td>
                                 </tr>
                                 <tr class="nk-store-cart-totals-shipping">
                                     <td> Shipping </td>
@@ -150,7 +150,7 @@
                                 </tr>
                                 <tr class="nk-store-cart-totals-total">
                                     <td> Total </td>
-                                    <td> € 52.00 </td>
+                                    <td> ₴ 52.00 </td>
                                 </tr>
                             </tbody>
                         </table>

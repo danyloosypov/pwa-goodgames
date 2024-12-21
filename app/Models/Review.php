@@ -64,6 +64,11 @@ class Review extends Model
 
 	#endregion
 
+	public function children()
+	{
+		return $this->hasMany(Review::class, 'id_reviews');
+	}
+
 	protected static function booted()
     {
         static::addGlobalScope('order', function (Builder $builder) {

@@ -74,7 +74,7 @@
                                     <a href="store-product.html">In all revolutions of</a>
                                 </h3>
                                 <div class="nk-gap-1"></div>
-                                <div class="nk-product-price">€ 23.00</div>
+                                <div class="nk-product-price">₴ 23.00</div>
                             </div>
                             <div class="nk-widget-post">
                                 <a href="store-product.html" class="nk-post-image">
@@ -87,7 +87,7 @@
                                     <a href="store-product.html">With what mingled joy</a>
                                 </h3>
                                 <div class="nk-gap-1"></div>
-                                <div class="nk-product-price">€ 14.00</div>
+                                <div class="nk-product-price">₴ 14.00</div>
                             </div>
                             <div class="nk-gap-2"></div>
                             <div class="text-center">

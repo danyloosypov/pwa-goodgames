@@ -1014,7 +1014,7 @@
 						<div class="nk-gap-1"></div>
 						<div class="nk-product-rating" data-rating="3"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="far fa-star"></i> <i class="far fa-star"></i></div>
 						<div class="nk-gap-1"></div>
-						<div class="nk-product-price">€ 14.00</div>
+						<div class="nk-product-price">₴ 14.00</div>
 						<div class="nk-gap-1"></div>
 						<a href="#" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Add to Cart</a>
 					</div>
@@ -1032,7 +1032,7 @@
 						<div class="nk-gap-1"></div>
 						<div class="nk-product-rating" data-rating="4.5"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fas fa-star-half"></i></div>
 						<div class="nk-gap-1"></div>
-						<div class="nk-product-price">€ 20.00</div>
+						<div class="nk-product-price">₴ 20.00</div>
 						<div class="nk-gap-1"></div>
 						<a href="#" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Add to Cart</a>
 					</div>
@@ -1050,7 +1050,7 @@
 						<div class="nk-gap-1"></div>
 						<div class="nk-product-rating" data-rating="5"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div>
 						<div class="nk-gap-1"></div>
-						<div class="nk-product-price">€ 23.00</div>
+						<div class="nk-product-price">₴ 23.00</div>
 						<div class="nk-gap-1"></div>
 						<a href="#" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Add to Cart</a>
 					</div>
@@ -1068,7 +1068,7 @@
 						<div class="nk-gap-1"></div>
 						<div class="nk-product-rating" data-rating="1.5"> <i class="fa fa-star"></i> <i class="fas fa-star-half"></i> <i class="far fa-star"></i> <i class="far fa-star"></i> <i class="far fa-star"></i></div>
 						<div class="nk-gap-1"></div>
-						<div class="nk-product-price">€ 32.00</div>
+						<div class="nk-product-price">₴ 32.00</div>
 						<div class="nk-gap-1"></div>
 						<a href="#" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Add to Cart</a>
 					</div>
@@ -1326,7 +1326,7 @@
 			</a>
 			<h3 class="nk-post-title"><a href="store-product.html">So saying he unbuckled</a></h3>
 			<div class="nk-product-rating" data-rating="4"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="far fa-star"></i></div>
-			<div class="nk-product-price">€ 23.00</div>
+			<div class="nk-product-price">₴ 23.00</div>
 		</div>
 	
 		<div class="nk-widget-post">
@@ -1335,7 +1335,7 @@
 			</a>
 			<h3 class="nk-post-title"><a href="store-product.html">However, I have reason</a></h3>
 			<div class="nk-product-rating" data-rating="2.5"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fas fa-star-half"></i> <i class="far fa-star"></i> <i class="far fa-star"></i></div>
-			<div class="nk-product-price">€ 32.00</div>
+			<div class="nk-product-price">₴ 32.00</div>
 		</div>
 	
 		<div class="nk-widget-post">
@@ -1344,7 +1344,7 @@
 			</a>
 			<h3 class="nk-post-title"><a href="store-product.html">It was some time before</a></h3>
 			<div class="nk-product-rating" data-rating="5"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div>
-			<div class="nk-product-price">€ 14.00</div>
+			<div class="nk-product-price">₴ 14.00</div>
 		</div>
 	
 </div>

@@ -6113,6 +6113,8 @@ img.rounded {
     -webkit-transition: .15s background-color;
     -o-transition: .15s background-color;
     transition: .15s background-color;
+    white-space: nowrap;
+    cursor: pointer;
 }
 
 .nk-tabs .nav-tabs .nav-link:focus, .nk-tabs .nav-tabs .nav-link:hover {
@@ -6135,9 +6137,6 @@ img.rounded {
 }
 
 .nk-tabs .nav-tabs.nav-tabs-fill .nav-item {
-    -webkit-box-flex: 1;
-        -ms-flex: 1;
-            flex: 1;
     margin: 10px 5px;
 }
 

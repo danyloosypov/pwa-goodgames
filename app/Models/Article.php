@@ -21,7 +21,7 @@ class Article extends MultilanguageModel
      * @var array<int, string>
      */
     protected $fillable = [
-        'title',
+		'title',
 		'slug',
 		'date',
 		'excerpt',
@@ -33,11 +33,11 @@ class Article extends MultilanguageModel
 		'meta_title',
 		'meta_description',
 		'meta_keywords',
-    ];
+	];
 
     #region Relationships
-    
-    public function articleTag() 
+
+	public function articleTag() 
 	{
 		return $this->belongsTo(ArticleTag::class, 'id_article_tags');
 	}
@@ -47,7 +47,12 @@ class Article extends MultilanguageModel
 		return $this->belongsTo(ArticleCategory::class, 'id_article_categories');
 	}
 
-    #endregion
+	public function reviews() 
+	{
+		return $this->hasMany(Review::class, 'id_articles');
+	}
+
+	#endregion
 
 	protected static function booted()
     {
@@ -62,6 +67,7 @@ class Article extends MultilanguageModel
 
 	public function scopeWithCategoryAndTag(Builder $query)
     {
-        $query->with(['articleCategory', 'articleTag']);
+        $query->with(['articleCategory', 'articleTag'])
+            ->withCount('reviews');;
     }
 }

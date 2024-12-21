@@ -54,6 +54,16 @@
                 "type": "text",
                 "db_title": "admin_lang_tag",
                 "title": "Admin language"
+            },
+            {
+                "id": 6,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": "avatar",
+                "title": "Avatar",
+                "type": "photo"
             }
         ],
         "is_dev": 0,
@@ -264,6 +274,18 @@
                 "db_title": "is_show",
                 "title": "Показувати на сайті?",
                 "type": "checkbox"
+            },
+            {
+                "id": 13,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": null,
+                "title": "Відгуки",
+                "type": "relationship",
+                "relationship_count": "editable",
+                "relationship_table_name": "reviews"
             },
             {
                 "id": 10,
@@ -1033,6 +1055,18 @@
                 "db_title": "is_active",
                 "title": "Активний?",
                 "type": "checkbox"
+            },
+            {
+                "id": 20,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": null,
+                "title": "Відгуки",
+                "type": "relationship",
+                "relationship_count": "editable",
+                "relationship_table_name": "reviews"
             },
             {
                 "id": 15,

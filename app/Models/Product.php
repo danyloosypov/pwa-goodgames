@@ -8,6 +8,7 @@ use App\Models\ProductCategory;
 use App\Models\ProductTag;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Product extends MultilanguageModel
 {
@@ -60,5 +61,17 @@ class Product extends MultilanguageModel
 		return $this->belongsToMany(Platform::class, 'products_platforms', 'id_products', 'id_platforms');
 	}
 
+	public function reviews() 
+	{
+		return $this->hasMany(Review::class, 'id_products');
+	}
+
 	#endregion
+
+	protected static function booted()
+    {
+        static::addGlobalScope('withAvgRating', function (Builder $builder) {
+            $builder->withAvg('reviews', 'rating');
+        });
+    }
 }
