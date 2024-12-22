@@ -663,6 +663,16 @@
                 "relationship_table_name": "tournament_matches"
             },
             {
+                "id": 9,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "yes",
+                "db_title": "game_name",
+                "title": "Назва гри",
+                "type": "text"
+            },
+            {
                 "id": 4,
                 "required": "optional",
                 "is_visible": true,
@@ -841,6 +851,16 @@
                 "db_title": "title",
                 "title": "Назва",
                 "type": "text"
+            },
+            {
+                "id": 2,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": "icon",
+                "title": "Іконка",
+                "type": "photo"
             }
         ],
         "is_dev": 0,

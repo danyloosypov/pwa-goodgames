@@ -21,6 +21,7 @@ return new class extends Migration
 			Schema::create("platforms_{$lang->tag}", function (Blueprint $table) {
 			$table->id();
 			$table->string("title");
+			$table->string("icon");
 			$table->timestamp("created_at")->default(\DB::raw("CURRENT_TIMESTAMP"));
 			$table->timestamp("updated_at")->default(\DB::raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
 			});

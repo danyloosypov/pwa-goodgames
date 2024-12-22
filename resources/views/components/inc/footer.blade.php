@@ -8,29 +8,7 @@
                     <h4 class="nk-widget-title">
                         <span class="text-main-1">Contact</span> With Us
                     </h4>
-                    <div class="nk-widget-content">
-                        <form action="php/ajax-contact-form.php" class="nk-form nk-form-ajax">
-                            <div class="row vertical-gap sm-gap">
-                                <div class="col-md-6">
-                                    <input type="email" class="form-control required" name="email" placeholder="Email *">
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control required" name="name" placeholder="Name *">
-                                </div>
-                            </div>
-                            <div class="nk-gap"></div>
-                            <textarea class="form-control required" name="message" rows="5" placeholder="Message *"></textarea>
-                            <div class="nk-gap-1"></div>
-                            <button class="nk-btn nk-btn-rounded nk-btn-color-white">
-                                <span>Send</span>
-                                <span class="icon">
-                                    <i class="ion-paper-airplane"></i>
-                                </span>
-                            </button>
-                            <div class="nk-form-response-success"></div>
-                            <div class="nk-form-response-error"></div>
-                        </form>
-                    </div>
+                    @livewire('contact-form')
                 </div>
             </div>
             <div class="col-md-6">
@@ -40,34 +18,22 @@
                     </h4>
                     <div class="nk-widget-content">
                         <div class="row vertical-gap sm-gap">
-                            <div class="col-lg-6">
-                                <div class="nk-widget-post-2">
-                                    <a href="blog-article.html" class="nk-post-image">
-                                        <img src="/images/post-1-sm.jpg" alt="">
-                                    </a>
-                                    <div class="nk-post-title">
-                                        <a href="blog-article.html">Smell magic in the air. Or maybe barbecue</a>
-                                    </div>
-                                    <div class="nk-post-date">
-                                        <span class="fa fa-calendar"></span> Sep 18, 2018 <span class="fa fa-comments"></span>
-                                        <a href="#">4</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="nk-widget-post-2">
-                                    <a href="blog-article.html" class="nk-post-image">
-                                        <img src="/images/post-2-sm.jpg" alt="">
-                                    </a>
-                                    <div class="nk-post-title">
-                                        <a href="blog-article.html">Grab your sword and fight the Horde</a>
-                                    </div>
-                                    <div class="nk-post-date">
-                                        <span class="fa fa-calendar"></span> Sep 5, 2018 <span class="fa fa-comments"></span>
-                                        <a href="#">7</a>
+                            @foreach ($articles as $article)
+                                <div class="col-lg-6">
+                                    <div class="nk-widget-post-2">
+                                        <a href="{{ route('article', ['article' => $article->slug]) }}" class="nk-post-image">
+                                            <img src="{{$article->image}}" alt="">
+                                        </a>
+                                        <div class="nk-post-title">
+                                            <a href="{{ route('article', ['article' => $article->slug]) }}">{{$article->title}}</a>
+                                        </div>
+                                        <div class="nk-post-date">
+                                            <span class="fa fa-calendar"></span> {{ \Carbon\Carbon::parse($article->date)->locale(app()->getLocale())->translatedFormat('M d, Y') }} <span class="fa fa-comments"></span>
+                                            <a href="{{ route('article', ['article' => $article->slug]) }}">{{$article->reviews_count}}</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -211,7 +177,7 @@
 <!-- END: Login Modal -->
 			
 
-<div id="loader">
+{{--<div id="loader">
 	<svg  width="40" height="40" viewBox="0 0 50 50">
 		<path fill="#black" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
 			<animateTransform attributeType="xml"
@@ -223,7 +189,7 @@
 				repeatCount="indefinite"/>
 		</path>
 	</svg>
-</div>
+</div>--}}
 
 <!-- START: Scripts -->
 

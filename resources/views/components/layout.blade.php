@@ -11,6 +11,7 @@
 		{!! SEO::linkPrev() !!}
 		{!! SEO::linkNext() !!}
 		        
+		@livewireStyles
 	</head>
 
 	<body style="--width: 0;">
@@ -24,7 +25,7 @@
 		<x-inc.footer />
 
 		{{ $javascript }}
-		
+		@livewireScripts
 	</body>
     
 </html>

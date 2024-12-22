@@ -22,6 +22,7 @@ class Tournament extends MultilanguageModel
 		'slug',
 		'description',
 		'date',
+		'game_name',
 		'meta_title',
 		'meta_description',
 		'meta_keywords',

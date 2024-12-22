@@ -24,6 +24,7 @@ return new class extends Migration
 			$table->string("slug");
 			$table->text("description");
 			$table->date("date")->default("2000-01-01"); // some DBs have errors with the default 0000-00-00
+			$table->string("game_name");
 			$table->text("meta_title");
 			$table->text("meta_description");
 			$table->text("meta_keywords");

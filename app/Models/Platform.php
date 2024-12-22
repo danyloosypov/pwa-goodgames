@@ -18,12 +18,13 @@ class Platform extends MultilanguageModel
      * @var array<int, string>
      */
     protected $fillable = [
-        'title',
-    ];
+		'title',
+		'icon',
+	];
 
     #region Relationships
-    
-    
 
-    #endregion
+	
+
+	#endregion
 }
