@@ -32,6 +32,7 @@ return new class extends Migration
 			$table->text("gallery");
 			$table->string("installer");
 			$table->tinyInteger("is_active");
+			$table->text("content");
 			$table->text("meta_title");
 			$table->text("meta_description");
 			$table->text("meta_keywords");

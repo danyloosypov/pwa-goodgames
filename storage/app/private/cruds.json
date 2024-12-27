@@ -1089,6 +1089,16 @@
                 "relationship_table_name": "reviews"
             },
             {
+                "id": 21,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "no",
+                "db_title": "content",
+                "title": "Контент",
+                "type": "ckeditor"
+            },
+            {
                 "id": 15,
                 "required": "optional",
                 "is_visible": true,

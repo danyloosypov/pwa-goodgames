@@ -6,11 +6,11 @@
     <div class="nk-widget-content">
         @foreach ($products as $product)
             <div class="nk-widget-post">
-                <a href="store-product.html" class="nk-post-image">
+                <a href="{{ route('product', ['product' => $product->slug]) }}" class="nk-post-image">
                     <img src="{{$product->image}}" alt="{{$product->title}}">
                 </a>
                 <h3 class="nk-post-title">
-                    <a href="store-product.html">{{$product->title}}</a>
+                    <a href="{{ route('product', ['product' => $product->slug]) }}">{{$product->title}}</a>
                 </h3>
                 <div class="nk-product-rating" data-rating="{{$product->reviews_avg_rating}}">
                     @for ($i = 1; $i <= 5; $i++)

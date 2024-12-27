@@ -181,3 +181,11 @@
         </div>
     </div>
 </div>
+
+@script
+<script>
+    $wire.on('filtersUpdated', () => {
+        initPluginSeiyriaBootstrapSlider();
+    });
+</script>
+@endscript

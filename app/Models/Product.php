@@ -34,6 +34,7 @@ class Product extends MultilanguageModel
 		'gallery',
 		'installer',
 		'is_active',
+		'content',
 		'meta_title',
 		'meta_description',
 		'meta_keywords',

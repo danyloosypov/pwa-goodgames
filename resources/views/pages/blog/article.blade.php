@@ -114,42 +114,7 @@
                                 <span class="text-main-1">{{$article->reviews_count}}</span> Comments </span>
                         </h3>
                         <div class="nk-gap"></div>
-                        <div class="nk-comments">
-                            @foreach ($article->reviews as $review)
-                                <!-- START: Comment -->
-                                <div class="nk-comment">
-                                    <div class="nk-comment-meta">
-                                        <img src="{{$review->user->avatar}}" alt="Witch Murder" class="rounded-circle" width="35"> by <a href="#">{{$review->user->name}}</a> in {{ \Carbon\Carbon::parse($review->date)->locale(app()->getLocale())->translatedFormat('M d, Y') }} <a href="#" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 float-right">Reply</a>
-                                    </div>
-                                    <div class="nk-comment-text">
-                                        <p>{{$review->text}}</p>
-                                    </div>
-                                    @if ($review->admin_reply)
-                                        <div class="nk-comment">
-                                            <div class="nk-comment-meta">
-                                                <img src="/images/avatar-1.jpg" alt="Hitman" class="rounded-circle" width="35"> by <a href="#">Admin</a> in {{ \Carbon\Carbon::parse($review->date)->locale(app()->getLocale())->translatedFormat('M d, Y') }}
-                                            </div>
-                                            <div class="nk-comment-text">
-                                                <p>{{$review->admin_reply}}</p>
-                                            </div>
-                                        </div>
-                                    @endif
-                                    @foreach ($review->children as $childrenReview)
-                                        <!-- START: Comment -->
-                                        <div class="nk-comment">
-                                            <div class="nk-comment-meta">
-                                                <img src="{{$childrenReview->user->admin}}" alt="Hitman" class="rounded-circle" width="35"> by <a href="#">{{$childrenReview->user->name}}</a> in {{ \Carbon\Carbon::parse($childrenReview->date)->locale(app()->getLocale())->translatedFormat('M d, Y') }} 
-                                            </div>
-                                            <div class="nk-comment-text">
-                                                <p>{{$childrenReview->text}}</p>
-                                            </div>
-                                        </div>
-                                        <!-- END: Comment -->
-                                    @endforeach
-                                </div>
-                                <!-- END: Comment -->
-                            @endforeach
-                        </div>
+                        @livewire('reviews', ['articleId' => $article->id])
                         <!-- END: Comments -->
                         <!-- START: Reply -->
                         <div class="nk-gap-2"></div>
@@ -158,27 +123,7 @@
                                 <span class="text-main-1">Leave</span> a Reply </span>
                         </h3>
                         <div class="nk-gap"></div>
-                        <div class="nk-reply">
-                            <form action="#" class="nk-form" novalidate="novalidate">
-                                <div class="row sm-gap vertical-gap">
-                                    <div class="col-md-4">
-                                        <input type="email" class="form-control required" name="email" placeholder="Email *">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <input type="text" class="form-control required" name="name" placeholder="Name *">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <input type="text" class="form-control" name="name" placeholder="Website">
-                                    </div>
-                                </div>
-                                <div class="nk-gap-1"></div>
-                                <textarea class="form-control required" name="message" rows="5" placeholder="Message *" aria-required="true"></textarea>
-                                <div class="nk-gap-1"></div>
-                                <div class="nk-form-response-success"></div>
-                                <div class="nk-form-response-error"></div>
-                                <button class="nk-btn nk-btn-rounded nk-btn-color-main-1">Post Comment</button>
-                            </form>
-                        </div>
+                        <livewire:submit-review :article-id="$article->id" />
                         <!-- END: Reply -->
                     </div>
                     <!-- END: Post -->

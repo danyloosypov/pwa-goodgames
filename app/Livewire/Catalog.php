@@ -87,6 +87,8 @@ class Catalog extends Component
         $this->maxPrice = $priceRange[1];
     
         $this->resetPage();
+
+        $this->dispatch('filtersUpdated');
     }
 
     public function updateGenres($genre)
@@ -98,6 +100,8 @@ class Catalog extends Component
         }
 
         $this->resetPage();
+
+        $this->dispatch('filtersUpdated');
     }
 
     public function updateCategories($category)
@@ -109,12 +113,16 @@ class Catalog extends Component
         }
 
         $this->resetPage();
+
+        $this->dispatch('filtersUpdated');
     }
 
     public function updatePlatform($platformId)
     {
         $this->platform = $this->platform == $platformId ? '' : $platformId;
         $this->resetPage(); 
+
+        $this->dispatch('filtersUpdated');
     }
 
     public function paginationView()

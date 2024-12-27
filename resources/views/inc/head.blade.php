@@ -57,8 +57,13 @@
 
 <!-- GoodGames -->
 <link rel="stylesheet" href="{{ asset('goodcss/goodgames.css') }}">
-
+<link rel="stylesheet" href="{{ asset('goodcss/custom.css') }}">
 <!-- END: Styles -->
 
 <!-- jQuery -->
 <script src="{{ asset('assets/jquery/dist/jquery.min.js') }}"></script>
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+<script src="{{ asset('js/slider.js') }}"></script>
