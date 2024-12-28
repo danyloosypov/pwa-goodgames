@@ -7,6 +7,7 @@ use App\Http\Controllers\TournamentCotroller;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,13 @@ Route::group([
 		//\App\FastAdminPanel\Middleware\RedirectSEO::class,
 	]
 ], function(){
+
+	Route::post('/api/register', [AuthController::class, 'register'])->name('api-register');
+	Route::post('/api/login', [AuthController::class, 'login'])->name('api-login');
+	Route::post('/api/logout', [AuthController::class, 'logout'])->name('api-logout');
+	Route::post('/api/sendcode', [AuthController::class, 'sendCode'])->name('api-sendcode');
+	Route::post('/api/checkcode', [AuthController::class, 'checkCode'])->name('api-checkcode');
+	Route::post('/api/changepassword', [AuthController::class, 'changePassword'])->name('api-changepassword');
 
 	Route::get('/', [PageController::class, 'index'])->name('home');
 	Route::get('/blog', [BlogController::class, 'index'])->name('blog');
