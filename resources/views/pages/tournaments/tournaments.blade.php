@@ -21,40 +21,34 @@
         <div class="container">
             <div class="row vertical-gap">
                 <div class="col-lg-8">
-                    <!-- START: Now Playing -->
-                    <div class="nk-match">
-                        <div class="nk-match-team-left">
-                            <a href="#">
-                                <span class="nk-match-team-logo">
-                                    <img src="assets/images/team-3.jpg" alt="">
-                                </span>
-                                <span class="nk-match-team-name"> Counted logic gaming </span>
-                            </a>
+                    @foreach ($tournaments as $tournament)
+                        <!-- START: Now Playing -->
+                        <div class="nk-match accordion" style="justify-content: space-between; cursor: pointer">
+                            <div class="nk-match-team-left">
+                                <a href="{{ route('tournament', ['tournament' => $tournament->slug]) }}">
+                                    <span class="nk-match-team-name">{{$tournament->title}}</span>
+                                </a>
+                            </div>
+                            <div class="nk-match-status">
+                                <a href="{{ route('tournament', ['tournament' => $tournament->slug]) }}">
+                                    <span class="nk-match-status-vs">{{ \Carbon\Carbon::parse($tournament->date)->locale(app()->getLocale())->translatedFormat('M d, Y') }}</span>
+                                    <span class="nk-match-score bg-dark-1">{{$tournament->game_name}}</span>
+                                </a>
+                            </div>
                         </div>
-                        <div class="nk-match-status">
-                            <a href="#">
-                                <span class="nk-match-status-vs">VS</span>
-                                <span class="nk-match-score bg-dark-1">Now Playing</span>
-                            </a>
+                        <div class="accordion-body">
+                            <div class="responsive-embed responsive-embed-16x9">
+                                <iframe src="https://player.twitch.tv/?channel=eulcs" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
+                            </div>
+                            <!-- END: Now Playing -->
+                            <!-- START: Match Description -->
+                            <div class="nk-gap-2"></div>
+                            {!! $tournament->description !!}
+                            <!-- END: Match Description -->
                         </div>
-                        <div class="nk-match-team-right">
-                            <a href="#">
-                                <span class="nk-match-team-name"> SK Telecom T1 </span>
-                                <span class="nk-match-team-logo">
-                                    <img src="assets/images/team-1.jpg" alt="">
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="responsive-embed responsive-embed-16x9">
-                        <iframe src="https://player.twitch.tv/?channel=eulcs" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
-                    </div>
-                    <!-- END: Now Playing -->
-                    <!-- START: Match Description -->
-                    <div class="nk-gap-2"></div>
-                    <h3 class="h4">Something wrong?</h3>
-                    <p>He made his passenger captain of one, with four of the men; and himself, his mate, and five more, went in the other; and they contrived their business very well, for they came up to the ship about midnight. I cannot express what a satisfaction it was to me to come into my old hutch</p>
-                    <!-- END: Match Description -->
+                        
+                        <div class="nk-gap-1"></div>
+                    @endforeach
                     <!-- START: Share -->
                     <div class="nk-gap"></div>
                     <div class="nk-post-share">
@@ -80,95 +74,10 @@
                                     <span class="fab fa-pinterest-p"></span>
                                 </span>
                             </li>
-                            <!-- Additional Share Buttons
-                    <li><span class="nk-social-linkedin" title="Share page on LinkedIn" data-share="linkedin"><span class="fab fa-linkedin"></span></span></li><li><span class="nk-social-vk" title="Share page on VK" data-share="vk"><span class="fab fa-vk"></span></span></li>
-                -->
                         </ul>
                     </div>
                     <!-- END: Share -->
-                    <!-- START: Latest Matches -->
-                    <div class="nk-gap-2"></div>
-                    <h3 class="nk-decorated-h-2">
-                        <span>
-                            <span class="text-main-1">Latest</span> Matches </span>
-                    </h3>
-                    <div class="nk-gap"></div>
-                    <div class="nk-match">
-                        <div class="nk-match-team-left">
-                            <a href="#">
-                                <span class="nk-match-team-logo">
-                                    <img src="assets/images/team-1.jpg" alt="">
-                                </span>
-                                <span class="nk-match-team-name"> SK Telecom T1 </span>
-                            </a>
-                        </div>
-                        <div class="nk-match-status">
-                            <a href="#">
-                                <span class="nk-match-status-vs">VS</span>
-                                <span class="nk-match-status-date">Apr 28, 2018 8:00 pm</span>
-                                <span class="nk-match-score bg-danger">2 : 17</span>
-                            </a>
-                        </div>
-                        <div class="nk-match-team-right">
-                            <a href="#">
-                                <span class="nk-match-team-name"> Cloud 9 </span>
-                                <span class="nk-match-team-logo">
-                                    <img src="assets/images/team-2.jpg" alt="">
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="nk-match">
-                        <div class="nk-match-team-left">
-                            <a href="#">
-                                <span class="nk-match-team-logo">
-                                    <img src="assets/images/team-3.jpg" alt="">
-                                </span>
-                                <span class="nk-match-team-name"> Counted logic gaming </span>
-                            </a>
-                        </div>
-                        <div class="nk-match-status">
-                            <a href="#">
-                                <span class="nk-match-status-vs">VS</span>
-                                <span class="nk-match-status-date">Apr 15, 2018 9:00 pm</span>
-                                <span class="nk-match-score bg-success"> 28 : 19 </span>
-                            </a>
-                        </div>
-                        <div class="nk-match-team-right">
-                            <a href="#">
-                                <span class="nk-match-team-name"> SK Telecom T1 </span>
-                                <span class="nk-match-team-logo">
-                                    <img src="assets/images/team-1.jpg" alt="">
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="nk-match">
-                        <div class="nk-match-team-left">
-                            <a href="#">
-                                <span class="nk-match-team-logo">
-                                    <img src="assets/images/team-4.jpg" alt="">
-                                </span>
-                                <span class="nk-match-team-name"> Team SoloMid </span>
-                            </a>
-                        </div>
-                        <div class="nk-match-status">
-                            <a href="#">
-                                <span class="nk-match-status-vs">VS</span>
-                                <span class="nk-match-status-date">Apr 28, 2018 8:00 pm</span>
-                                <span class="nk-match-score bg-dark-1"> 13 : 13 </span>
-                            </a>
-                        </div>
-                        <div class="nk-match-team-right">
-                            <a href="#">
-                                <span class="nk-match-team-name"> SK Telecom T1 </span>
-                                <span class="nk-match-team-logo">
-                                    <img src="assets/images/team-1.jpg" alt="">
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- END: Latest Matches -->
+                    <x-index.latest-matches />
                 </div>
                 <div class="col-lg-4">
                     <x-widgets.sidebar />
@@ -186,3 +95,42 @@
 	</x-slot>
 
 </x-layout>
+
+<style>
+    .accordion-body {
+        display: none;
+    }
+
+    .accordion:after {
+        content: '\002B';
+        color: white;
+        font-weight: bold;
+        float: right;
+        margin-left: 5px;
+    }
+
+    .accordion.active:after {
+        content: '\2212';
+        color: #dd163b;
+        font-weight: bold;
+        float: right;
+        margin-left: 5px;
+    }
+</style>
+
+<script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+    
+    for (i = 0; i < acc.length; i++) {
+      acc[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+          panel.style.display = "none";
+        } else {
+          panel.style.display = "block";
+        }
+      });
+    }
+</script>

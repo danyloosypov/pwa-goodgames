@@ -110,13 +110,8 @@
                     <li class=" nk-item">
                         <a href="{{route('blog')}}"> Blog </a>
                     </li>
-                    <li class=" nk-drop-item">
+                    <li class=" nk-item">
                         <a href="{{route('tournaments')}}"> Tournaments </a>
-                        <ul class="dropdown">
-                            <li>
-                                <a href="tournaments-teams.html"> Teams </a>
-                            </li>
-                        </ul>
                     </li>
                     <li class=" nk-item">
                         <a href="{{route('catalog')}}"> Catalog </a>

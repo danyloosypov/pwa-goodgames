@@ -26,7 +26,7 @@
                         <div class="nk-match-team-left">
                             <a href="#">
                                 <span class="nk-match-team-logo">
-                                    <img src="assets/images/team-3.jpg" alt="">
+                                    <img src="/images/team-3.jpg" alt="">
                                 </span>
                                 <span class="nk-match-team-name"> Counted logic gaming </span>
                             </a>
@@ -41,7 +41,7 @@
                             <a href="#">
                                 <span class="nk-match-team-name"> SK Telecom T1 </span>
                                 <span class="nk-match-team-logo">
-                                    <img src="assets/images/team-1.jpg" alt="">
+                                    <img src="/images/team-1.jpg" alt="">
                                 </span>
                             </a>
                         </div>
@@ -55,6 +55,88 @@
                     <h3 class="h4">Something wrong?</h3>
                     <p>He made his passenger captain of one, with four of the men; and himself, his mate, and five more, went in the other; and they contrived their business very well, for they came up to the ship about midnight. I cannot express what a satisfaction it was to me to come into my old hutch</p>
                     <!-- END: Match Description -->
+                    <div class="">
+                        <!-- START: Teams -->
+                        <div class="nk-team">
+                            <div class="nk-team-logo">
+                                <img src="/images/team-1-lg.jpg" alt="">
+                            </div>
+                            <div class="nk-team-cont">
+                                <h3 class="h5 mb-20">
+                                    <span class="text-main-1">Team:</span> SK Telecom T1
+                                </h3>
+                                <h4 class="h6 mb-5">Members:</h4>
+                                <a href="tournaments-teammate.html">Duke</a>, <a href="tournaments-teammate.html">Bangi</a>, <a href="tournaments-teammate.html">Faker</a>, <a href="tournaments-teammate.html">Bang</a>, <a href="tournaments-teammate.html">Wolf</a>
+                                <div class="nk-team-photo" style="background-image: url('/images/team-photo.png');"></div>
+                            </div>
+                        </div>
+                        <div class="nk-team">
+                            <div class="nk-team-logo">
+                                <img src="/images/team-2-lg.jpg" alt="">
+                            </div>
+                            <div class="nk-team-cont">
+                                <h3 class="h5 mb-20">
+                                    <span class="text-main-1">Team:</span> Team Solomid
+                                </h3>
+                                <h4 class="h6 mb-5">Members:</h4>
+                                <a href="tournaments-teammate.html">Duke</a>, <a href="tournaments-teammate.html">Bangi</a>, <a href="tournaments-teammate.html">Faker</a>, <a href="tournaments-teammate.html">Bang</a>, <a href="tournaments-teammate.html">Wolf</a>
+                                <div class="nk-team-photo" style="background-image: url('/images/team-photo.png');"></div>
+                            </div>
+                        </div>
+                        <div class="nk-team">
+                            <div class="nk-team-logo">
+                                <img src="/images/team-3-lg.jpg" alt="">
+                            </div>
+                            <div class="nk-team-cont">
+                                <h3 class="h5 mb-20">
+                                    <span class="text-main-1">Team:</span> Cloud 9
+                                </h3>
+                                <h4 class="h6 mb-5">Members:</h4>
+                                <a href="tournaments-teammate.html">Duke</a>, <a href="tournaments-teammate.html">Bangi</a>, <a href="tournaments-teammate.html">Faker</a>, <a href="tournaments-teammate.html">Bang</a>, <a href="tournaments-teammate.html">Wolf</a>
+                                <div class="nk-team-photo" style="background-image: url('/images/team-photo.png');"></div>
+                            </div>
+                        </div>
+                        <div class="nk-team">
+                            <div class="nk-team-logo">
+                                <img src="/images/team-4-lg.jpg" alt="">
+                            </div>
+                            <div class="nk-team-cont">
+                                <h3 class="h5 mb-20">
+                                    <span class="text-main-1">Team:</span> Counter Logic Gaming
+                                </h3>
+                                <h4 class="h6 mb-5">Members:</h4>
+                                <a href="tournaments-teammate.html">Duke</a>, <a href="tournaments-teammate.html">Bangi</a>, <a href="tournaments-teammate.html">Faker</a>, <a href="tournaments-teammate.html">Bang</a>, <a href="tournaments-teammate.html">Wolf</a>
+                                <div class="nk-team-photo" style="background-image: url('/images/team-photo.png');"></div>
+                            </div>
+                        </div>
+                        <div class="nk-team">
+                            <div class="nk-team-logo">
+                                <img src="/images/team-1-lg.jpg" alt="">
+                            </div>
+                            <div class="nk-team-cont">
+                                <h3 class="h5 mb-20">
+                                    <span class="text-main-1">Team:</span> fnatic
+                                </h3>
+                                <h4 class="h6 mb-5">Members:</h4>
+                                <a href="tournaments-teammate.html">Duke</a>, <a href="tournaments-teammate.html">Bangi</a>, <a href="tournaments-teammate.html">Faker</a>, <a href="tournaments-teammate.html">Bang</a>, <a href="tournaments-teammate.html">Wolf</a>
+                                <div class="nk-team-photo" style="background-image: url('/images/team-photo.png');"></div>
+                            </div>
+                        </div>
+                        <div class="nk-team">
+                            <div class="nk-team-logo">
+                                <img src="/images/team-2-lg.jpg" alt="">
+                            </div>
+                            <div class="nk-team-cont">
+                                <h3 class="h5 mb-20">
+                                    <span class="text-main-1">Team:</span> Origen
+                                </h3>
+                                <h4 class="h6 mb-5">Members:</h4>
+                                <a href="tournaments-teammate.html">Duke</a>, <a href="tournaments-teammate.html">Bangi</a>, <a href="tournaments-teammate.html">Faker</a>, <a href="tournaments-teammate.html">Bang</a>, <a href="tournaments-teammate.html">Wolf</a>
+                                <div class="nk-team-photo" style="background-image: url('/images/team-photo.png');"></div>
+                            </div>
+                        </div>
+                        <!-- END: Teams -->
+                    </div>
                     <!-- START: Share -->
                     <div class="nk-gap"></div>
                     <div class="nk-post-share">
@@ -97,7 +179,7 @@
                         <div class="nk-match-team-left">
                             <a href="#">
                                 <span class="nk-match-team-logo">
-                                    <img src="assets/images/team-1.jpg" alt="">
+                                    <img src="/images/team-1.jpg" alt="">
                                 </span>
                                 <span class="nk-match-team-name"> SK Telecom T1 </span>
                             </a>
@@ -113,7 +195,7 @@
                             <a href="#">
                                 <span class="nk-match-team-name"> Cloud 9 </span>
                                 <span class="nk-match-team-logo">
-                                    <img src="assets/images/team-2.jpg" alt="">
+                                    <img src="/images/team-2.jpg" alt="">
                                 </span>
                             </a>
                         </div>
@@ -122,7 +204,7 @@
                         <div class="nk-match-team-left">
                             <a href="#">
                                 <span class="nk-match-team-logo">
-                                    <img src="assets/images/team-3.jpg" alt="">
+                                    <img src="/images/team-3.jpg" alt="">
                                 </span>
                                 <span class="nk-match-team-name"> Counted logic gaming </span>
                             </a>
@@ -138,7 +220,7 @@
                             <a href="#">
                                 <span class="nk-match-team-name"> SK Telecom T1 </span>
                                 <span class="nk-match-team-logo">
-                                    <img src="assets/images/team-1.jpg" alt="">
+                                    <img src="/images/team-1.jpg" alt="">
                                 </span>
                             </a>
                         </div>
@@ -147,7 +229,7 @@
                         <div class="nk-match-team-left">
                             <a href="#">
                                 <span class="nk-match-team-logo">
-                                    <img src="assets/images/team-4.jpg" alt="">
+                                    <img src="/images/team-4.jpg" alt="">
                                 </span>
                                 <span class="nk-match-team-name"> Team SoloMid </span>
                             </a>
@@ -163,7 +245,7 @@
                             <a href="#">
                                 <span class="nk-match-team-name"> SK Telecom T1 </span>
                                 <span class="nk-match-team-logo">
-                                    <img src="assets/images/team-1.jpg" alt="">
+                                    <img src="/images/team-1.jpg" alt="">
                                 </span>
                             </a>
                         </div>

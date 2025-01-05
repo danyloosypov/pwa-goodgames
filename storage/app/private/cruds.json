@@ -1127,6 +1127,18 @@
                 "db_title": "meta_keywords",
                 "title": "Meta keywords",
                 "type": "textarea"
+            },
+            {
+                "id": 22,
+                "required": "optional",
+                "is_visible": false,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": null,
+                "title": "Товари в замовленні",
+                "type": "relationship",
+                "relationship_count": "editable",
+                "relationship_table_name": "order_products"
             }
         ],
         "is_dev": 0,

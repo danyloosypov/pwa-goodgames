@@ -67,6 +67,11 @@ class Product extends MultilanguageModel
 		return $this->hasMany(Review::class, 'id_products');
 	}
 
+	public function orderProducts() 
+	{
+		return $this->hasMany(OrderProduct::class, 'id_products');
+	}
+
 	#endregion
 
 	protected static function booted()

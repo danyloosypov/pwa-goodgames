@@ -46,8 +46,7 @@ Route::group([
 
 	Route::get('/tournaments', [TournamentCotroller::class, 'index'])->name('tournaments');
 	Route::get('/tournaments/{tournament:slug}', [TournamentCotroller::class, 'show'])->name('tournament');
-	Route::get('/tournaments/{tournament:slug}/teams', [TournamentCotroller::class, 'teams'])->name('teams');
-	Route::get('/teams/{teammate:slug}', [TournamentCotroller::class, 'teammate'])->name('teammate');
+	Route::get('/teammates/{teammate:slug}', [TournamentCotroller::class, 'teammate'])->name('teammate');
 
 	Route::fallback(function () {
         return view("errors.404");

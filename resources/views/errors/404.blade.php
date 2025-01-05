@@ -20,7 +20,7 @@
                             <h2 class="h4">You chose the wrong path!</h2>
                             <div>Or such a page just doesn't exist... <br> Would you like to go back to the homepage? </div>
                             <div class="nk-gap-3"></div>
-                            <a href="index.html" class="nk-btn nk-btn-rounded nk-btn-color-white">Return to Homepage</a>
+                            <a href="{{route('home')}}" class="nk-btn nk-btn-rounded nk-btn-color-white">Return to Homepage</a>
                         </div>
                     </div>
                     <div class="nk-gap-3"></div>
