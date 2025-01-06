@@ -24,10 +24,28 @@ class TournamentCotroller extends Controller
     public function show($slug)
     {
         $tournament = Tournament::where('slug', $slug)
+            ->with(['tournamentMatches.teams'])
             ->firstOrFail();
 
+        $teams = $tournament->tournamentMatches->flatMap(function ($match) {
+            return $match->teams;
+        })->unique('id'); // Make sure teams are unique based on their id
+
+        $latestMatches = $tournament->tournamentMatches
+            ->whereNotNull('result')
+            ->where('datetime', '<', now())
+            ->sortByDesc('datetime'); // Ensure latest matches are ordered from most recent to least recent
+        
+        // Select upcoming matches (where datetime is in the future)
+        $upcomingMatches = $tournament->tournamentMatches
+            ->where('datetime', '>', now())
+            ->sortBy('datetime');
+    
         return view('pages.tournaments.tournament', [
             'tournament' => $tournament,
+            'teams' => $teams, // Pass teams as a separate collection
+            'latest_matches' => $latestMatches, // Pass latest matches
+            'upcoming_matches' => $upcomingMatches,
         ]);
     }
 
