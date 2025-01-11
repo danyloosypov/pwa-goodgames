@@ -49,12 +49,11 @@
                                 <div class="nk-gap-1"></div>
                                 <div class="nk-product-price">₴ {{$product->price}}</div>
                                 <div class="nk-gap-1"></div>
-                                <div class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Add to Cart</div>
+                                <div class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1" onclick="Cart.add({{$product->id}}, 1)">Add to Cart</div>
                             </div>
                         </div>
                     </div>
                 @endforeach
-                
             </div>
             <div class="nk-gap-2"></div>
             <!-- END: Products -->

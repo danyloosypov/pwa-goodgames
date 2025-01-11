@@ -73,7 +73,7 @@
                                 <div class="nk-gap-2"></div>
                                 <div class="nk-product-price">₴ 32.00</div>
                                 <div class="nk-gap-1"></div>
-                                <button class="nk-btn nk-btn-rounded nk-btn-color-main-1">Add to Cart</button>
+                                <button class="nk-btn nk-btn-rounded nk-btn-color-main-1" onclick="Cart.add({{$product->id}}, 1)">Add to Cart</button>
                                 <div class="nk-gap-3"></div>
                                 <!-- END: Add to Cart -->
                                 <!-- START: Meta -->

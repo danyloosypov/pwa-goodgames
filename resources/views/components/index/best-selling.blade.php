@@ -24,7 +24,7 @@
                     <div class="nk-gap-1"></div>
                     <div class="nk-product-price">₴ {{$product->price}}</div>
                     <div class="nk-gap-1"></div>
-                    <a href="#" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Add to Cart</a>
+                    <a href="#" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1" onclick="Cart.add({{$product->id}}, 1)">Add to Cart</a>
                 </div>
             </div>
         </div>

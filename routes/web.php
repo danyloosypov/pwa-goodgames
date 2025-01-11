@@ -8,6 +8,10 @@ use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CartController;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +24,22 @@ use App\Http\Controllers\AuthController;
 |
 */
 
+Route::get('/clear_cache', function () {
+    // Clear application cache
+    Artisan::call('cache:clear');
+    
+    // Clear route cache
+    Artisan::call('route:clear');
+    
+    // Clear config cache
+    Artisan::call('config:clear');
+    
+    // Clear view cache
+    Artisan::call('view:clear');
+
+    return response()->json(['message' => 'All caches cleared successfully']);
+});
+
 Route::get('/sitemap.xml', [SitemapController::class, 'index']);
 
 Route::group([
@@ -30,14 +50,18 @@ Route::group([
 	]
 ], function(){
 
-	Route::post('/api/register', [AuthController::class, 'register'])->name('api-register');
-	Route::post('/api/login', [AuthController::class, 'login'])->name('api-login');
 	Route::post('/api/logout', [AuthController::class, 'logout'])->name('api-logout');
-	Route::post('/api/sendcode', [AuthController::class, 'sendCode'])->name('api-sendcode');
-	Route::post('/api/checkcode', [AuthController::class, 'checkCode'])->name('api-checkcode');
-	Route::post('/api/changepassword', [AuthController::class, 'changePassword'])->name('api-changepassword');
+	Route::post('/api/send-checkout', [CheckoutController::class, 'send'])->name('api-send-checkout');
+	Route::post('/api/user-edit', [AccountController::class, 'editUser'])->name('api-user-edit');
+	Route::post('/api/add-to-cart', [CartController::class, 'add'])->name('api-add-to-cart');
+	Route::post('/api/set-promocode', [CartController::class, 'setPromocode'])->name('api-set-promocode');
+	Route::post('/api/send-checkout', [CheckoutController::class, 'send'])->name('api-send-checkout');
+	Route::post('/api/change-payment', [CheckoutController::class, 'changePayment'])->name('api-change-payment');
 
 	Route::get('/', [PageController::class, 'index'])->name('home');
+
+	Route::get('/account', [AccountController::class, 'account'])->name('account');
+
 	Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 	Route::get('/blog/{article:slug}', [BlogController::class, 'show'])->name('article');
 
@@ -47,6 +71,8 @@ Route::group([
 	Route::get('/tournaments', [TournamentCotroller::class, 'index'])->name('tournaments');
 	Route::get('/tournaments/{tournament:slug}', [TournamentCotroller::class, 'show'])->name('tournament');
 	Route::get('/teammates/{teammate:slug}', [TournamentCotroller::class, 'teammate'])->name('teammate');
+
+	Route::get('/checkout', [CheckoutController::class, 'page'])->name('checkout');
 
 	Route::fallback(function () {
         return view("errors.404");

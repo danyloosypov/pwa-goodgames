@@ -1,5 +1,6 @@
 <!-- START: Footer -->
 <footer class="nk-footer">
+	<div class="" id="add-to-cart" data-route="{{route('api-add-to-cart')}}"></div>
     <div class="container">
         <div class="nk-gap-3"></div>
         <div class="row vertical-gap">
@@ -367,6 +368,62 @@
 		},
 	}
 	// ajax request END
+
+	const Cart = new function() {
+
+		this.add = async(id_products, count, meta = '') => {
+
+			const is_checkout = window.location.href.indexOf("checkout") !== -1 ? 1 : 0
+
+			const route = document.querySelector('#add-to-cart').getAttribute('data-route')
+
+			const response = await req.post(route, {
+				id_products: id_products,
+				count: count,
+				is_checkout: is_checkout,
+				meta: meta,
+			}, true)
+
+			if (!response.success) {
+				alert('Ошибка')
+				return
+			}
+
+			document.querySelector('#mini-cart').innerHTML = response.data.minicart
+			document.querySelector('.header-btn-count').innerText = response.data.count
+			//document.querySelector('#checkout-info').innerHTML = response.data.cart_info
+
+			if (response.data.count > 0){
+			// 	$('#checkout-submit').css('display', 'flex')
+				document.querySelector('#cart-submit').classList.remove('btn-none')
+			} else {
+			// 	$('#checkout-submit').css('display', 'none')
+				document.querySelector('#cart-submit').classList.add('btn-none')
+			}
+
+			if (is_checkout) {
+				document.querySelector('#checkout-products').innerHTML = response.data.checkout_products
+				document.querySelector('#checkout-info').innerHTML = response.data.checkout_info
+				//document.querySelector('#checkout-promocode').innerHTML = response.data.promocode
+				
+				const event = new CustomEvent('change_isFreeDelivery', { 
+					detail: {
+						isFreeDelivery: response.data.is_free_delivery,
+					}, 
+				});
+
+				document.dispatchEvent(event)
+
+				const eventPayments = new CustomEvent('change_payments', { 
+					detail: {
+						payments: response.data.payments,
+					}, 
+				});
+
+				document.dispatchEvent(eventPayments)
+			}
+		}
+	}
 		
 
 	function resize() {
@@ -381,6 +438,14 @@
 	}
 	appHeight()
 	window.addEventListener('resize', appHeight)
+
+	async function logout(route) {
+        const response = await req.post(route, {})
+
+		if (response.success) {
+			location.href = response.data.link
+		}
+    }
 
 </script>
 

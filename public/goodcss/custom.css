@@ -22,3 +22,7 @@
 #loader path {
     fill: var(--color-blue);
 }
+
+.btn-none {
+    display: none !important;
+}
