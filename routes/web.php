@@ -49,6 +49,7 @@ Route::group([
 		//\App\FastAdminPanel\Middleware\RedirectSEO::class,
 	]
 ], function(){
+	Route::any('/api/liqpay-callback', [CheckoutController::class, 'liqpayCallback'])->name('api-liqpay-callback');
 
 	Route::post('/api/logout', [AuthController::class, 'logout'])->name('api-logout');
 	Route::post('/api/send-checkout', [CheckoutController::class, 'send'])->name('api-send-checkout');
@@ -73,7 +74,9 @@ Route::group([
 	Route::get('/teammates/{teammate:slug}', [TournamentCotroller::class, 'teammate'])->name('teammate');
 
 	Route::get('/checkout', [CheckoutController::class, 'page'])->name('checkout');
-
+	
+	Route::get('/thanks', [CheckoutController::class, 'thanks'])->name('thanks')->middleware('signed');
+	
 	Route::fallback(function () {
         return view("errors.404");
     });

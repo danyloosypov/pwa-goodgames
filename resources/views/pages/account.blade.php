@@ -40,8 +40,33 @@
                     <div class="account-answer error text-danger" style="display: none;">There was an error updating your profile.</div>
                 </form>
 
+                <div class="nk-gap-2"></div>
+                <div class="nk-gap-2"></div>
 
-                
+                <h3>Previous Orders</h3>
+                @if ($orders->isEmpty())
+                    <p>No previous orders found.</p>
+                @else
+                    <ul class="list-group">
+                        @foreach ($orders as $order)
+                            <li class="list-group-item">
+                                <h5>Order #{{ $order->id }}</h5>
+                                <p><strong>Status:</strong> {{ $order->orderStatus->name }}</p>
+                                <p><strong>Total:</strong> ${{ number_format($order->total, 2) }}</p>
+                                <p><strong>Date:</strong> {{ $order->created_at->format('d M Y') }}</p>
+
+                                <ul>
+                                    @foreach ($order->orderProducts as $product)
+                                        <li>
+                                            <img src="{{ $product->image }}" alt="{{ $product->title }}" width="50">
+                                            {{ $product->title }} - ${{ number_format($product->price, 2) }}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </li>
+                        @endforeach
+                    </ul>
+                @endif
             </div>
             <div class="col-md-4 mt-4">
                 <div class="card">

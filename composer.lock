@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0ea500fffe38c310ab2731294c6839d9",
+    "content-hash": "f31bd7f1887aae4b8157ae1ae6484ab4",
     "packages": [
         {
             "name": "brick/math",
@@ -341,6 +341,69 @@
                 "source": "https://github.com/digiants-agency/fastadminpanel/tree/v2.0.16"
             },
             "time": "2024-11-29T12:02:51+00:00"
+        },
+        {
+            "name": "digital-threads/liqpay",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Digital-Threads/Liqpay.git",
+                "reference": "cadb1a4acbef50f8fbb1e0f035df465281cf1e4c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Digital-Threads/Liqpay/zipball/cadb1a4acbef50f8fbb1e0f035df465281cf1e4c",
+                "reference": "cadb1a4acbef50f8fbb1e0f035df465281cf1e4c",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": ">=6.20.12",
+                "liqpay/liqpay": "^1.2",
+                "php": "^7.3|^8.0"
+            },
+            "require-dev": {
+                "fakerphp/faker": "^1.14",
+                "friendsofphp/php-cs-fixer": "^3.0",
+                "mockery/mockery": "^1.4",
+                "orchestra/testbench": "^6",
+                "phpunit/phpunit": "^9.5",
+                "squizlabs/php_codesniffer": "^3.6",
+                "vimeo/psalm": "^4.7"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "DigitalThreads\\LiqPay\\LiqPayServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DigitalThreads\\LiqPay\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stas Vartanyan",
+                    "email": "vaawebdev@gmail.com"
+                }
+            ],
+            "description": "Laravel LiqPay Client",
+            "keywords": [
+                "laravel",
+                "liqpay",
+                "payment"
+            ],
+            "support": {
+                "issues": "https://github.com/Digital-Threads/Liqpay/issues",
+                "source": "https://github.com/Digital-Threads/Liqpay/tree/1.0.1"
+            },
+            "time": "2021-06-17T12:05:07+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -2419,6 +2482,53 @@
                 }
             ],
             "time": "2024-12-08T08:18:47+00:00"
+        },
+        {
+            "name": "liqpay/liqpay",
+            "version": "v1.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/liqpay/sdk-php.git",
+                "reference": "43d8e690fe68a778d9743cfa1b8bf0061ab46538"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/liqpay/sdk-php/zipball/43d8e690fe68a778d9743cfa1b8bf0061ab46538",
+                "reference": "43d8e690fe68a778d9743cfa1b8bf0061ab46538",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "./LiqPay.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OSL 3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Liqpay",
+                    "email": "support@liqpay.ua",
+                    "homepage": "https://www.liqpay.ua/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "SDK for Liqpay",
+            "homepage": "https://github.com/liqpay/sdk-php",
+            "keywords": [
+                "liqpay",
+                "pay"
+            ],
+            "support": {
+                "issues": "https://github.com/liqpay/sdk-php/issues",
+                "source": "https://github.com/liqpay/sdk-php/tree/master"
+            },
+            "time": "2017-10-26T19:16:56+00:00"
         },
         {
             "name": "livewire/livewire",
@@ -9076,12 +9186,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.2"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }

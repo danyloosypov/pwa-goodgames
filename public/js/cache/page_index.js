@@ -201,7 +201,7 @@
 
 	const Cart = new function() {
 
-		this.add = async(id_products, meta = '') => {
+		this.add = async(id_products, count, meta = '') => {
 
 			const is_checkout = window.location.href.indexOf("checkout") !== -1 ? 1 : 0
 
@@ -209,6 +209,7 @@
 
 			const response = await req.post(route, {
 				id_products: id_products,
+				count: count,
 				is_checkout: is_checkout,
 				meta: meta,
 			}, true)
@@ -219,8 +220,8 @@
 			}
 
 			document.querySelector('#mini-cart').innerHTML = response.data.minicart
-			document.querySelector('.header-btn.cart .header-btn-count').innerText = response.data.count
-			document.querySelector('#modal-cart-info').innerHTML = response.data.cart_info
+			document.querySelector('.header-btn-count').innerText = response.data.count
+			//document.querySelector('#checkout-info').innerHTML = response.data.cart_info
 
 			if (response.data.count > 0){
 			// 	$('#checkout-submit').css('display', 'flex')
@@ -231,9 +232,9 @@
 			}
 
 			if (is_checkout) {
-				document.querySelector('#checkout-cart').innerHTML = response.data.checkout_cart
-				document.querySelector('#checkout-cart-info').innerHTML = response.data.cart_info
-				document.querySelector('#checkout-promocode').innerHTML = response.data.promocode
+				document.querySelector('#checkout-products').innerHTML = response.data.checkout_products
+				document.querySelector('#checkout-info').innerHTML = response.data.checkout_info
+				//document.querySelector('#checkout-promocode').innerHTML = response.data.promocode
 				
 				const event = new CustomEvent('change_isFreeDelivery', { 
 					detail: {

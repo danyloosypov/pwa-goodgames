@@ -21,8 +21,14 @@ class AccountController extends Controller
             abort(404);
         }
 
+        $user = auth()->user();
+
+        // Retrieve the user's orders with their related order products and status
+        $orders = $user->orders()->with('orderProducts', 'orderStatus')->get();
+
+
         return view("pages.account", [
-            
+            'orders' => $orders
         ]);
     }
 

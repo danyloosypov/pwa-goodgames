@@ -18,17 +18,32 @@ class Order extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-		'surname',
+		'name',
 		'email',
+		'subtotal',
 		'total',
 		'is_paid',
 		'date',
-    ];
+		'id_order_statuses',
+		'id_users',
+	];
 
     #region Relationships
-    
-    
 
-    #endregion
+	public function orderStatus() 
+	{
+		return $this->belongsTo(OrderStatus::class, 'id_order_statuses');
+	}
+
+	public function orderProducts() 
+	{
+		return $this->hasMany(OrderProduct::class, 'id_orders');
+	}
+
+	public function user() 
+	{
+		return $this->belongsTo(User::class, 'id_users');
+	}
+
+	#endregion
 }

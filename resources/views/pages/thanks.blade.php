@@ -1,5 +1,7 @@
 <x-layout>
 
+    thanks page
+
     <x-slot name="metaTitle">
         {{-- {{ $metaTitle }} --}}
     </x-slot>

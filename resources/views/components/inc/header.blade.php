@@ -67,7 +67,7 @@
                     <li>
                         <span class="nk-cart-toggle">
                             <span class="fa fa-shopping-cart"></span>
-                            <span class="nk-badge header-btn-count">{{Cart::count()}}</span>
+                            <span class="nk-badge header-btn-count">{{$cartCount}}</span>
                         </span>
                         <div class="nk-cart-dropdown">
                             <div id="mini-cart">

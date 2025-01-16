@@ -17,7 +17,9 @@ return new class extends Migration
             $table->id();
 			$table->string("image");
 			$table->string("title");
+			$table->decimal("price", 15, 2);
 			$table->unsignedBigInteger("id_products");
+			$table->unsignedBigInteger("id_orders");
 			$table->timestamp("created_at")->default(\DB::raw("CURRENT_TIMESTAMP"));
 			$table->timestamp("updated_at")->default(\DB::raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
         });

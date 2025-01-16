@@ -19,17 +19,24 @@ class OrderProduct extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'image',
+		'image',
 		'title',
+		'price',
 		'id_products',
-    ];
+		'id_orders',
+	];
 
     #region Relationships
-    
-    public function product() 
+
+	public function product() 
 	{
 		return $this->belongsTo(Product::class, 'id_products');
 	}
 
-    #endregion
+	public function order() 
+	{
+		return $this->belongsTo(Order::class, 'id_orders');
+	}
+
+	#endregion
 }
