@@ -67,3 +67,5 @@
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
 <script src="{{ asset('js/slider.js') }}"></script>
+
+@laravelPWA
