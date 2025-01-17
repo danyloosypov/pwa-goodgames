@@ -31,3 +31,5 @@ tmp/db/ib_logfile0
 tmp/db/ibdata1
 tmp/db/mysql/innodb_index_stats.ibd
 tmp/db/mysql/innodb_table_stats.ibd
+tmp/db
+tmp/
