@@ -1626,5 +1626,31 @@
         "is_statistics": 0,
         "model": "\\App\\Models\\Cart",
         "default_order": ""
+    },
+    {
+        "table_name": "promocodes",
+        "title": "Промокоди",
+        "fields": [
+            {
+                "id": 1,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 1,
+                "show_in_list": "yes",
+                "db_title": "title",
+                "title": "Промокод",
+                "type": "text"
+            }
+        ],
+        "is_dev": 0,
+        "multilanguage": 0,
+        "is_soft_delete": 0,
+        "sort": 10,
+        "dropdown_slug": "orders",
+        "icon": "",
+        "is_docs": 1,
+        "is_statistics": 0,
+        "model": "\\App\\Models\\Promocode",
+        "default_order": ""
     }
 ]
