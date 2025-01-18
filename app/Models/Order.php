@@ -26,6 +26,7 @@ class Order extends Model
 		'date',
 		'id_order_statuses',
 		'id_users',
+		'id_payments',
 	];
 
     #region Relationships
@@ -43,6 +44,11 @@ class Order extends Model
 	public function user() 
 	{
 		return $this->belongsTo(User::class, 'id_users');
+	}
+
+	public function payment() 
+	{
+		return $this->belongsTo(Payment::class, 'id_payments');
 	}
 
 	#endregion

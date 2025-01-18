@@ -3,32 +3,31 @@
 namespace App\Services;
 
 use App\Contracts\PaymentProcessorInterface;
+use App\Models\Order;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Http\JsonResponse;
+use Liqpay;
 
 class LiqpayPaymentProcessor implements PaymentProcessorInterface
 {
-    public function createPayment(float $amount, string $currency, array $paymentDetails): array
+    public function createPayment(int $orderId)
     {
-        //Liqpay
-        /*
+        $order = Order::find($orderId);
 
-        $order = Order::findOrFail($orderId);
-
-        $prerequisites = LiqPay::getCheckoutFormPrerequisites([
-            'amount' => $order->amount,
-            'description' => $order->description,
+        $form = Liqpay::cnbForm(array(
+            'action' => 'pay',
+            'amount' => $order->total,
+            'currency' => 'UAH',
+            'description' => 'Замовлення № ' . $order->id,
             'order_id' => $order->id,
-            'result_url' => route('web.checkout'),
-            'server_url' => route('api.liqpay_callback'), // The url that wil be used for order webhook notification
-            'currency' => $order->currency, // Optional. If not set - default currency will be used.
-        ]);
+            'version' => '3',
+            'result_url' => URL::signedRoute('thanks', ['order' => $order->id]),
+            'server_url' => route('api-liqpay-callback'),
+        ));
 
         return new JsonResponse([
-            'action' => $prerequisites->getAction(),
-            'data' => $prerequisites->getData(),
-            'signature' => $prerequisites->getSignature(),
+            'form' => $form,
         ]);
-
-        */
     }
 
     public function processPayment(array $paymentData): array

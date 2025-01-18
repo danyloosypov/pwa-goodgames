@@ -4,6 +4,6 @@ namespace App\Contracts;
 
 interface PaymentProcessorInterface
 {
-    public function createPayment(float $amount, string $currency, array $paymentDetails): array;
-    public function processPayment(array $paymentData): array;
+    public function createPayment(int $orderId);
+    public function processPayment(array $paymentData);
 }

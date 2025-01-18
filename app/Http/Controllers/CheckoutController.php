@@ -22,6 +22,8 @@ use CartPrice;
 use Cart;
 use Promocode;
 use App\Contracts\PaymentProcessorFactoryInterface;
+use DigitalThreads\LiqPay\Exceptions\InvalidCallbackRequestException;
+use DigitalThreads\LiqPay\LiqPay;
 
 class CheckoutController extends Controller
 {
@@ -95,10 +97,18 @@ class CheckoutController extends Controller
             $orderProduct->save();
         }
 
-        SendOrder::dispatch($order);
-        SendStatus::dispatch($order);
+        /*SendOrder::dispatch($order);
+        SendStatus::dispatch($order);*/
 
-        Cart::clear();
+        $paymentProcessor = $this->paymentProcessorFactory->getProcessor($data['id_payments']);
+
+        $response = $paymentProcessor->createPayment($order->id);
+
+        return response()->json([
+            'paymentData' => $response,
+        ]);
+
+        //Cart::clear();
         //Promocode::setUsed();
 
         session()->forget("payment_id");

@@ -1418,6 +1418,19 @@
                 "relationship_count": "single",
                 "relationship_table_name": "users",
                 "relationship_view_field": "name"
+            },
+            {
+                "id": 11,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "yes",
+                "db_title": null,
+                "title": "Спосіб оплати",
+                "type": "relationship",
+                "relationship_count": "single",
+                "relationship_table_name": "payments",
+                "relationship_view_field": "title"
             }
         ],
         "is_dev": 0,

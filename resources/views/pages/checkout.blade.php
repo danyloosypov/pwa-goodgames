@@ -38,11 +38,11 @@
                             <div class="row vertical-gap">
                                 <div class="col-sm-6">
                                     <label for="fname">Your Name <span class="text-main-1">*</span>:</label>
-                                    <input type="text" class="form-control required" name="fname" id="fname" x-model="user.name">
+                                    <input type="text" class="form-control required" name="fname" id="fname" x-model="name">
                                 </div>
                                 <div class="col-sm-6">
                                     <label for="email">Email Address <span class="text-main-1">*</span>:</label>
-                                    <input type="email" class="form-control required" name="email" id="email" x-model="user.email">
+                                    <input type="email" class="form-control required" name="email" id="email" x-model="email">
                                 </div>
                             </div>
                         </div>
@@ -104,6 +104,8 @@
             return {
                 payments: payments,
                 user: user,
+                name: (user && user.name) ? user.name : '',
+                email: (user && user.email) ? user.email : '',
                 orderNotes: '',
                 selectedPaymentId: payments.find(payment => payment.active)?.id || payments[0].id,
 
@@ -118,14 +120,25 @@
 
                 async placeOrder() {
                     const orderData = {
-                        name: this.user.name,
-                        email: this.user.email,
+                        name: this.name,
+                        email: this.email,
                         comment: this.orderNotes,
                         id_payments: this.selectedPaymentId,
                     };
 
                     const response = await req.post('/api/send-checkout', orderData);
-                    console.log(response)
+                    //console.log(response)
+                    console.log(response.data)
+
+                    if (response.redirect) {
+                        window.location.href = response.redirect;
+                    } else if (response.data.paymentData) {
+                        const formString = response.data.paymentData.original.form
+                        const form = new DOMParser().parseFromString(formString, 'text/html').body.firstChild;  
+                        document.body.appendChild(form);
+
+                        form.submit();
+                    }
                 }
             };
         }

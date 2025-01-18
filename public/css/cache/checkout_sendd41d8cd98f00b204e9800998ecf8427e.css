@@ -91,7 +91,9 @@ img[srcset] {
 
 #loader path {
     fill: var(--color-second);
-} }@media (max-width: 1600px) and (min-width: 1000px) { :root {
+}
+
+ }@media (max-width: 1600px) and (min-width: 1000px) { :root {
 	--column-width: 86.1111vw;
 	--offset: calc(50% - (var(--column-width) / 2));
 }
@@ -184,7 +186,9 @@ img[srcset] {
 
 #loader path {
     fill: var(--color-second);
-} }@media (min-width: calc(494px)) and (max-width: calc(1000px)) {
+}
+
+ }@media (min-width: calc(494px)) and (max-width: calc(1000px)) {
             body {
                 --coef-w: calc(var(--width) / -910 + 1.3771);
                 --offset: calc(4.6875vw * ((320 - 320 * var(--coef-w) + 30 * var(--coef-w)) / 30));
