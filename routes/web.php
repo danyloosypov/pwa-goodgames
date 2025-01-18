@@ -67,6 +67,7 @@ Route::group([
 	Route::get('/blog/{article:slug}', [BlogController::class, 'show'])->name('article');
 
 	Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog');
+	Route::get('/catalog-offline', [CatalogController::class, 'offline'])->name('catalog-offline');
 	Route::get('/product/{product:slug}', [ProductController::class, 'index'])->name('product');
 
 	Route::get('/tournaments', [TournamentCotroller::class, 'index'])->name('tournaments');
@@ -81,3 +82,7 @@ Route::group([
         return view("errors.404");
     });
 });
+/*
+Route::get('/offline', function () {
+	return view('modules/laravelpwa/offline');
+});*/

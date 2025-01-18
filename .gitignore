@@ -2,6 +2,8 @@
 /node_modules
 /public/build
 /public/hot
+/public/css/cache/
+/public/js/cache/
 /public/storage
 /public/photos
 /tmp

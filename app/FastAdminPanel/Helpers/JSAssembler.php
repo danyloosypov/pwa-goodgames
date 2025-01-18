@@ -33,6 +33,17 @@ class JSAssembler
     public static function get()
 	{
         // need research of version collision
+        if (request()->route()->getAction()['controller'] == 'App\Http\Controllers\CatalogController@index') {
+            return;
+        }
+
+        if (request()->route()->getAction()['controller'] == 'App\Http\Controllers\CatalogController@offline') {
+            return;
+        }
+
+        if (strpos(request()->fullUrl(), 'offline') !== false || request()->has('offline')) {
+            return;
+        }
 
         if (isset(request()->route()->getAction()['controller']))
             $method = request()->route()->getAction()['controller'];

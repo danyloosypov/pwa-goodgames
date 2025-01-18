@@ -91,7 +91,9 @@ img[srcset] {
 
 #loader path {
     fill: var(--color-second);
-} 
+}
+
+ 
 
 
  }@media (max-width: 1600px) and (min-width: 1000px) { :root {
@@ -187,7 +189,9 @@ img[srcset] {
 
 #loader path {
     fill: var(--color-second);
-} 
+}
+
+ 
 
 
  }@media (min-width: calc(494px)) and (max-width: calc(1000px)) {

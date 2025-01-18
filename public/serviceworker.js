@@ -1,16 +1,8 @@
 var staticCacheName = "pwa-v" + new Date().getTime();
 var filesToCache = [
     '/offline',
-    '/css/app.css',
-    '/js/app.js',
-    '/images/icons/icon-72x72.png',
-    '/images/icons/icon-96x96.png',
-    '/images/icons/icon-128x128.png',
-    '/images/icons/icon-144x144.png',
-    '/images/icons/icon-152x152.png',
-    '/images/icons/icon-192x192.png',
-    '/images/icons/icon-384x384.png',
-    '/images/icons/icon-512x512.png',
+    '/catalog',
+    '/catalog-offline',
 ];
 
 // Cache on install
@@ -40,13 +32,41 @@ self.addEventListener('activate', event => {
 
 // Serve from Cache
 self.addEventListener("fetch", event => {
-    event.respondWith(
-        caches.match(event.request)
-            .then(response => {
-                return response || fetch(event.request);
-            })
-            .catch(() => {
-                return caches.match('offline');
-            })
-    )
+    // Check if the request is for a catalog page (including paginated URLs)
+    if (event.request.url.includes('/catalog')) {
+        event.respondWith(
+            caches.match(event.request)
+                .then(response => {
+                    // If the page is in cache, serve it
+                    if (response) {
+                        return response;
+                    }
+
+                    // Otherwise, fetch it and dynamically cache it
+                    return fetch(event.request)
+                        .then(fetchResponse => {
+                            return caches.open(staticCacheName)
+                                .then(cache => {
+                                    // Cache the fetched catalog page (paginated or not)
+                                    cache.put(event.request.url, fetchResponse.clone());
+                                    return fetchResponse;
+                                });
+                        })
+                        .catch(() => {
+                            // If offline and the page is not cached, show the offline page
+                            return caches.match('/offline');
+                        });
+                })
+        );
+    } else {
+        // For other requests, try serving from cache first, then fetch from network
+        event.respondWith(
+            caches.match(event.request)
+                .then(response => {
+                    return response || fetch(event.request).catch(() => {
+                        return caches.match('/offline');
+                    });
+                })
+        );
+    }
 });
