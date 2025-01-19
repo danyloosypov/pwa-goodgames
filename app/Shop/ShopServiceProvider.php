@@ -34,6 +34,7 @@ class ShopServiceProvider extends ServiceProvider
         $this->app->singleton('user_discount', \App\Shop\Cart\Discounts\UserDiscount::class);
         $this->app->singleton('compare', \App\Shop\Compare\Compare::class);
         $this->app->singleton('liqpay', \App\Shop\Liqpay\Liqpay::class);
+        $this->app->singleton('fondy', \App\Shop\Fondy\Fondy::class);
 
         $this->app->booting(function() {
 
@@ -47,6 +48,7 @@ class ShopServiceProvider extends ServiceProvider
 			$loader->alias('UserDiscount',		\App\Shop\Facades\UserDiscount::class);
 			$loader->alias('Compare',		\App\Shop\Facades\Compare::class);
             $loader->alias('Liqpay',		\App\Shop\Facades\Liqpay::class);
+            $loader->alias('Fondy',		\App\Shop\Facades\Fondy::class);
 		});
     }
 }

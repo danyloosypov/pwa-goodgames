@@ -169,6 +169,8 @@
                         document.body.appendChild(form);
 
                         form.submit();
+                    } else if (response.data.paymentData && response.data.payment_id == 3) {
+                        window.location.href = response.data.paymentData.original.url;
                     }
                 },
 

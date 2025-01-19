@@ -38,6 +38,11 @@ return [
         'secret' => env('WAYFORPAY_MERCHANT_SECRET_KEY'),
     ],
 
+    'fondy' => [
+        'id' => env('FONDY_MERCHANT_ID'),
+        'secret' => env('FONDY_TRANSACTION_SECRET'),
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode
