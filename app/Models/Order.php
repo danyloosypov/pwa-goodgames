@@ -27,6 +27,7 @@ class Order extends Model
 		'id_order_statuses',
 		'id_users',
 		'id_payments',
+		'comment',
 	];
 
     #region Relationships

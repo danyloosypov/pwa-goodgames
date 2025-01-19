@@ -40,6 +40,10 @@ Route::get('/clear_cache', function () {
     return response()->json(['message' => 'All caches cleared successfully']);
 });
 
+Route::get('/test', function() {
+	return view('pages.test');
+});
+
 Route::get('/sitemap.xml', [SitemapController::class, 'index']);
 
 Route::group([
@@ -49,7 +53,7 @@ Route::group([
 		//\App\FastAdminPanel\Middleware\RedirectSEO::class,
 	]
 ], function(){
-	Route::any('/api/liqpay-callback', [CheckoutController::class, 'liqpayCallback'])->name('api-liqpay-callback');
+	Route::any('/api/handle-payment-callback', [CheckoutController::class, 'handlePaymentCallback'])->name('handle-payment-callback');
 
 	Route::post('/api/logout', [AuthController::class, 'logout'])->name('api-logout');
 	Route::post('/api/send-checkout', [CheckoutController::class, 'send'])->name('api-send-checkout');

@@ -13,6 +13,7 @@ class OrderStatus extends MultilanguageModel
     const NEW = 1;
     const CANCELLED = 2;
     const COMPLETED = 3;
+    const FAILED = 4;
 
     protected $table = 'order_statuses';
 

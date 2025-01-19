@@ -2,8 +2,10 @@
 
 namespace App\Contracts;
 
+use Illuminate\Http\Request;
+
 interface PaymentProcessorInterface
 {
     public function createPayment(int $orderId);
-    public function processPayment(array $paymentData);
+    public function processPayment(Request $request);
 }

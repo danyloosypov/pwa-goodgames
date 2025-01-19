@@ -28,6 +28,16 @@ return [
 
     'env' => env('APP_ENV', 'production'),
 
+    'liqpay' => [
+        'public_key' => env('LIQPAY_PUBLIC_KEY'),
+        'private_key' => env('LIQPAY_PRIVATE_KEY'),
+    ],
+
+    'wayforpay' => [
+        'login' => env('WAYFORPAY_MERCHANT_LOGIN'),
+        'secret' => env('WAYFORPAY_MERCHANT_SECRET_KEY'),
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode

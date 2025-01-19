@@ -1431,6 +1431,16 @@
                 "relationship_count": "single",
                 "relationship_table_name": "payments",
                 "relationship_view_field": "title"
+            },
+            {
+                "id": 12,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": "comment",
+                "title": "Комментарій",
+                "type": "textarea"
             }
         ],
         "is_dev": 0,

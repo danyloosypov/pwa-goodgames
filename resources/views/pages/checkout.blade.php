@@ -132,13 +132,52 @@
 
                     if (response.redirect) {
                         window.location.href = response.redirect;
-                    } else if (response.data.paymentData) {
+                    } else if (response.data.paymentData && response.data.payment_id == 1) {
                         const formString = response.data.paymentData.original.form
                         const form = new DOMParser().parseFromString(formString, 'text/html').body.firstChild;  
                         document.body.appendChild(form);
 
                         form.submit();
+                    } else if (response.data.paymentData && response.data.payment_id == 2) {
+                        let form = document.createElement("form");
+                        form.setAttribute("method", "POST");
+                        form.setAttribute("action", 'https://secure.wayforpay.com/pay');
+                        form.setAttribute("accept-charset", "utf-8");
+
+                        let paymentData = response.data.paymentData.original; // Assuming response.data.paymentData contains all the fields
+
+                        // Create input fields for all the payment data returned by the server
+                        form.appendChild(this.createHiddenInput("merchantAccount", paymentData.merchantAccount));
+                        form.appendChild(this.createHiddenInput("merchantDomainName", paymentData.merchantDomainName));
+                        form.appendChild(this.createHiddenInput("merchantTransactionSecureType", paymentData.merchantTransactionSecureType));
+                        form.appendChild(this.createHiddenInput("merchantSignature", paymentData.merchantSignature));
+                        form.appendChild(this.createHiddenInput("apiVersion", paymentData.apiVersion));
+                        form.appendChild(this.createHiddenInput("orderReference", paymentData.orderReference));
+                        form.appendChild(this.createHiddenInput("orderDate", paymentData.orderDate));
+                        form.appendChild(this.createHiddenInput("amount", paymentData.amount));
+                        form.appendChild(this.createHiddenInput("currency", paymentData.currency));
+                        form.appendChild(this.createHiddenInput("returnUrl", paymentData.returnUrl));
+                        form.appendChild(this.createHiddenInput("serviceUrl", paymentData.serviceUrl)); // Optional, since it's the form's action URL
+                        form.appendChild(this.createHiddenInput("merchantAuthType", 'SimpleSignature')); // Optional, since it's the form's action URL
+
+                        for (let i = 0; i < paymentData.productName.length; i++) {
+                            form.appendChild(this.createHiddenInput(`productName[]`, paymentData.productName[i]));
+                            form.appendChild(this.createHiddenInput(`productPrice[]`, paymentData.productPrice[i]));
+                            form.appendChild(this.createHiddenInput(`productCount[]`, paymentData.productCount[i]));
+                        }
+
+                        document.body.appendChild(form);
+
+                        form.submit();
                     }
+                },
+
+                createHiddenInput(name, value) {
+                    let input = document.createElement("input");
+                    input.setAttribute("type", "hidden");
+                    input.setAttribute("name", name);
+                    input.setAttribute("value", value);
+                    return input;
                 }
             };
         }

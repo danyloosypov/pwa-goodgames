@@ -33,8 +33,8 @@ class Liqpay
      */
     public function __construct()
     {
-        $this->publicKey = env('LIQPAY_PUBLIC_KEY');
-        $this->privateKey = env('LIQPAY_PRIVATE_KEY');
+        $this->publicKey = config('app.liqpay.public_key');
+        $this->privateKey = config('app.liqpay.private_key');
     }
 
     /**

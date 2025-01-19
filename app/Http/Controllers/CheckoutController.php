@@ -97,25 +97,25 @@ class CheckoutController extends Controller
             $orderProduct->save();
         }
 
-        /*SendOrder::dispatch($order);
-        SendStatus::dispatch($order);*/
+        SendOrder::dispatch($order);
 
         $paymentProcessor = $this->paymentProcessorFactory->getProcessor($data['id_payments']);
 
         $response = $paymentProcessor->createPayment($order->id);
 
         return response()->json([
+            'payment_id' => $data['id_payments'],
             'paymentData' => $response,
         ]);
 
         //Cart::clear();
         //Promocode::setUsed();
 
-        session()->forget("payment_id");
+        //session()->forget("payment_id");
 
-		return response()->json([
+		/*return response()->json([
             'redirect' => URL::signedRoute('thanks', ['order' => $order->id], now()->addMinutes(30)),
-		]);
+		]);*/
     }
 
     public function changePayment(Request $r)
@@ -142,11 +142,13 @@ class CheckoutController extends Controller
     {
         $id = $r->get("order");
 
-        $order = $orderModel->findById($id);
+        $order = Order::find($id);
 
         if (empty($order)) {
             abort(404);
         }
+
+        SendStatus::dispatch($order);
 
         //$single = Single::get("thanks");
 
@@ -156,15 +158,14 @@ class CheckoutController extends Controller
         ]);
     }
 
-    public function liqpayCallback(Requrest $request)
+    public function handlePaymentCallback(Requrest $request)
     {
-        try {
-            $payload = LiqPay::validateCallback($request);
-            $order = Order::findOrFail($payload->get('order_id'));
+        $paymentId = session()->get('payment_id', 0);
 
-            $order->update(['status' => $payload->get('status')]);
-        } catch (InvalidCallbackRequestException $e) {
-            return new JsonResponse(['error' => $e->getMessage()], 400);
+        if (!empty($paymentId)) {
+            $paymentProcessor = $this->paymentProcessorFactory->getProcessor($data['id_payments']);
+
+            $paymentProcessor->processPayment($request);
         }
     }
 }
