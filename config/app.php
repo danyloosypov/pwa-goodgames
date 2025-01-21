@@ -48,6 +48,10 @@ return [
         'pk' => env('STRIPE_PK'),
     ],
 
+    'coingate' => [
+        'token' => env('COINGATE_TOKEN'),
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode
