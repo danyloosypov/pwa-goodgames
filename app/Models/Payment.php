@@ -15,6 +15,9 @@ class Payment extends MultilanguageModel
     const FONDY = 3;
     const STRIPE = 4;
     const PAYPAL = 5;
+    const SQUARE = 6;
+    const COINGATE = 7;
+    const NOWPAYMENTS = 8;
 
     protected $table = 'payments';
 

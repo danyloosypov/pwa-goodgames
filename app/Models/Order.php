@@ -28,6 +28,13 @@ class Order extends Model
 		'id_users',
 		'id_payments',
 		'comment',
+		'stripe_session_id',
+	];
+
+	protected $attributes = [
+		'stripe_session_id' => '',
+		'is_paid' => 0,
+		'comment' => '',
 	];
 
     #region Relationships

@@ -1441,6 +1441,16 @@
                 "db_title": "comment",
                 "title": "Комментарій",
                 "type": "textarea"
+            },
+            {
+                "id": 13,
+                "required": "optional",
+                "is_visible": false,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": "stripe_session_id",
+                "title": "Stripe session id",
+                "type": "text"
             }
         ],
         "is_dev": 0,

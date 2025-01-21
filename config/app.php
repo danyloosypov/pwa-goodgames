@@ -43,6 +43,11 @@ return [
         'secret' => env('FONDY_TRANSACTION_SECRET'),
     ],
 
+    'stripe' => [
+        'sk' => env('STRIPE_SK'),
+        'pk' => env('STRIPE_PK'),
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode
