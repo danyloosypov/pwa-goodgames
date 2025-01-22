@@ -169,7 +169,7 @@
                         document.body.appendChild(form);
 
                         form.submit();
-                    } else if (response.data.paymentData && (response.data.payment_id == 3 || response.data.payment_id == 4 || response.data.payment_id == 7)) {
+                    } else if (response.data.paymentData && (response.data.payment_id == 3 || response.data.payment_id == 4 || response.data.payment_id == 7 || response.data.payment_id == 8)) {
                         window.location.href = response.data.paymentData.original.url;
                     }
                 },

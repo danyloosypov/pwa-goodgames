@@ -52,6 +52,10 @@ return [
         'token' => env('COINGATE_TOKEN'),
     ],
 
+    'nowpayments' => [
+        'api_key' => env('NOW_PAYMENTS_API_KEY'),
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode
