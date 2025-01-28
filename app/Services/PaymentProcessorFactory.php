@@ -22,8 +22,6 @@ class PaymentProcessorFactory implements PaymentProcessorFactoryInterface
                 return new StripePaymentProcessor(); 
             case 5:
                 return new PayPalPaymentProcessor(); 
-            case 6:
-                return new SquarePaymentProcessor(); 
             case 7:
                 return new CoingatePaymentProcessor(); 
             case 8:

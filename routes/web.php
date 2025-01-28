@@ -80,6 +80,7 @@ Route::group([
 
 	Route::get('/checkout', [CheckoutController::class, 'page'])->name('checkout');
 	
+	Route::get('/thanks/paypal', [CheckoutController::class, 'thanks'])->name('thanks.paypal');
 	Route::get('/thanks', [CheckoutController::class, 'thanks'])->name('thanks')->middleware('signed');
 	
 	Route::fallback(function () {

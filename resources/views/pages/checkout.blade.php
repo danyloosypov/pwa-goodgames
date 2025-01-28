@@ -108,6 +108,8 @@
                 email: (user && user.email) ? user.email : '',
                 orderNotes: '',
                 selectedPaymentId: payments.find(payment => payment.active)?.id || payments[0].id,
+                showPaypalButton: false,
+                payPalId: '',
 
                 async changePaymentMethod(paymentId) {
                     this.selectedPaymentId = paymentId;
@@ -169,9 +171,9 @@
                         document.body.appendChild(form);
 
                         form.submit();
-                    } else if (response.data.paymentData && (response.data.payment_id == 3 || response.data.payment_id == 4 || response.data.payment_id == 7 || response.data.payment_id == 8)) {
+                    } else if (response.data.paymentData && (response.data.payment_id == 3 || response.data.payment_id == 4 || response.data.payment_id == 7 || response.data.payment_id == 8 || response.data.payment_id == 5)) {
                         window.location.href = response.data.paymentData.original.url;
-                    }
+                    } 
                 },
 
                 createHiddenInput(name, value) {
@@ -180,7 +182,7 @@
                     input.setAttribute("name", name);
                     input.setAttribute("value", value);
                     return input;
-                }
+                },
             };
         }
     </script>
