@@ -26,6 +26,13 @@ return new class extends Migration
 			$table->unsignedBigInteger("id_payments");
 			$table->text("comment");
 			$table->string("stripe_session_id");
+			$table->string("liqpay_id");
+			$table->string("wayforpay_id");
+			$table->string("fondy_id");
+			$table->string("stripe_id");
+			$table->string("paypal_id");
+			$table->string("coingate_id");
+			$table->string("nowpayments_id");
 			$table->timestamp("created_at")->default(\DB::raw("CURRENT_TIMESTAMP"));
 			$table->timestamp("updated_at")->default(\DB::raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
         });

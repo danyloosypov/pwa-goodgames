@@ -29,12 +29,26 @@ class Order extends Model
 		'id_payments',
 		'comment',
 		'stripe_session_id',
+		'liqpay_id',
+		'wayforpay_id',
+		'fondy_id',
+		'stripe_id',
+		'paypal_id',
+		'coingate_id',
+		'nowpayments_id',
 	];
 
 	protected $attributes = [
 		'stripe_session_id' => '',
 		'is_paid' => 0,
 		'comment' => '',
+		'liqpay_id' => '',
+		'wayforpay_id' => '',
+		'fondy_id' => '',
+		'stripe_id' => '',
+		'paypal_id' => '',
+		'coingate_id' => '',
+		'nowpayments_id' => '',
 	];
 
     #region Relationships

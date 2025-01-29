@@ -1451,6 +1451,76 @@
                 "db_title": "stripe_session_id",
                 "title": "Stripe session id",
                 "type": "text"
+            },
+            {
+                "id": 14,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": "liqpay_id",
+                "title": "Liqpay ID",
+                "type": "text"
+            },
+            {
+                "id": 15,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": "wayforpay_id",
+                "title": "WayForPay ID",
+                "type": "text"
+            },
+            {
+                "id": 16,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": "fondy_id",
+                "title": "Fondy ID",
+                "type": "text"
+            },
+            {
+                "id": 17,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": "stripe_id",
+                "title": "Stripe ID",
+                "type": "text"
+            },
+            {
+                "id": 18,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": "paypal_id",
+                "title": "Paypal ID",
+                "type": "text"
+            },
+            {
+                "id": 19,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": "coingate_id",
+                "title": "Coingate ID",
+                "type": "text"
+            },
+            {
+                "id": 20,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": "nowpayments_id",
+                "title": "NowPayments ID",
+                "type": "text"
             }
         ],
         "is_dev": 0,
