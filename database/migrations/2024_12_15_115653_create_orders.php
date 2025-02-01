@@ -33,6 +33,10 @@ return new class extends Migration
 			$table->string("paypal_id");
 			$table->string("coingate_id");
 			$table->string("nowpayments_id");
+			$table->unsignedBigInteger("id_promocodes");
+			$table->integer("points_used");
+			$table->decimal("promocode_price", 15, 2);
+			$table->decimal("discount_price", 15, 2);
 			$table->timestamp("created_at")->default(\DB::raw("CURRENT_TIMESTAMP"));
 			$table->timestamp("updated_at")->default(\DB::raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
         });

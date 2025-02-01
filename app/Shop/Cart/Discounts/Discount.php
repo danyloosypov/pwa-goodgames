@@ -2,14 +2,13 @@
 
 namespace App\Shop\Cart\Discounts;
 
-use App\Models\Discount as DiscountModel;
+use App\Models\CartDiscount as DiscountModel;
 use CartPrice;
 
 class Discount
 {
     private $model;
     private $discount;
-    private $isFreeDelivery;
     private $cartPrice;
 
     public function __construct(DiscountModel $model)
@@ -24,18 +23,12 @@ class Discount
         return $this->discount;
     }
 
-    public function getIsFreeDelivery()
-    {
-        return $this->isFreeDelivery;
-    }
-
     public function init()
     {
         $discounts = $this->model->where('money', '<=', $this->cartPrice)->get();
 
         $maxDiscount = $discounts->max('money');
         $this->discount = $discounts->firstWhere('money', $maxDiscount);
-        $this->isFreeDelivery = $discounts->contains('is_free_delivery', 1);
     }
 
     public function getDiscount()

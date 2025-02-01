@@ -21,9 +21,11 @@ use SEO;
 use CartPrice;
 use Cart;
 use Promocode;
+use UserDiscount;
 use App\Contracts\PaymentProcessorFactoryInterface;
 use DigitalThreads\LiqPay\Exceptions\InvalidCallbackRequestException;
 use DigitalThreads\LiqPay\LiqPay;
+use App\Events\AssignBonusPointsEvent;
 
 class CheckoutController extends Controller
 {
@@ -56,10 +58,13 @@ class CheckoutController extends Controller
             $payment = $payments->first();
         }
 
+        [$subtractPoints, $availableBonuses] = UserDiscount::getPoints();
+
         return view("pages.checkout", [
             "payments" => $payments,
             "payment" => $payment,
             "user" => $user,
+            "subtractPoints" => $subtractPoints,
             /*"single" => $single,
             */
         ]);
@@ -69,13 +74,13 @@ class CheckoutController extends Controller
     {
         $data = $r->validated();
 
-       // $promocode = Promocode::get();
+        $promocode = Promocode::get();
 
         $data["subtotal"] = CartPrice::subtotal();
-       // $data["id_promocode"] = $promocode->id ?? 0;
-        //$data["promocode_price"] = -CartPrice::promocode();
-        //$data["discount_price"] = -CartPrice::discount();
-        //$data["user_discount_price"] = -CartPrice::userDiscount();
+        $data["id_promocode"] = $promocode->id ?? 0;
+        $data["promocode_price"] = CartPrice::promocode();
+        $data["discount_price"] = CartPrice::discount();
+        $data['points_used'] = CartPrice::usedBonuses();
         $data["total"] = CartPrice::total();
         $data["is_paid"] = false;
         $data["date"] = date("Y-m-d H:i:s");
@@ -103,19 +108,15 @@ class CheckoutController extends Controller
 
         $response = $paymentProcessor->createPayment($order->id);
 
+        //Cart::clear();
+		Promocode::setUsed();
+
+        session()->forget("payment_id");
+
         return response()->json([
             'payment_id' => $data['id_payments'],
             'paymentData' => $response,
         ]);
-
-        //Cart::clear();
-        //Promocode::setUsed();
-
-        //session()->forget("payment_id");
-
-		/*return response()->json([
-            'redirect' => URL::signedRoute('thanks', ['order' => $order->id], now()->addMinutes(30)),
-		]);*/
     }
 
     public function changePayment(Request $r)
@@ -148,7 +149,17 @@ class CheckoutController extends Controller
             abort(404);
         }
 
+        //TODO: move to payment callback
+        $user = $order->user;
+		if ($user)
+		{
+			$user->points -= $order->points_used;
+			$user->save();
+			event(new AssignBonusPointsEvent($user, $order));
+		}
+        
         SendStatus::dispatch($order);
+        //TODO
 
         //$single = Single::get("thanks");
 

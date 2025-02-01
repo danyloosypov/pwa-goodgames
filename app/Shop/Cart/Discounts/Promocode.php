@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Payment;
 use App\Models\Promocode as PromocodeModel;
 use App\Shop\Exceptions\InvalidPromocodeException;
+use Carbon\Carbon;
 use Session;
 use Cart;
 
@@ -24,7 +25,6 @@ class Promocode
     public function get()
     {    
         if ($this->promocode != null) {
-    
             $this->clearIfUsed($this->promocode->title);
 			return $this->promocode;
 		}
@@ -45,8 +45,9 @@ class Promocode
         }
 
         if (!$promocodeItem->is_once) {
-            $currentDate = date('Y-m-d');
-            if (!($currentDate >= $promocodeItem->date_start && $currentDate <= $promocodeItem->date_end)) {
+            $currentDate = Carbon::today();
+
+            if (!(Carbon::parse($promocodeItem->date_start) >= $currentDate && Carbon::parse($promocodeItem->date_end) >= $currentDate)) {
                 throw new InvalidPromocodeException("Promocode is expired");
             }
         }
@@ -57,28 +58,26 @@ class Promocode
         return $this->promocode;
     }
 
-    public function getIsFreeDelivery()
-    {
-        return $this->get()->is_free_delivery;
-    }
-
     public function getDiscount() {
-
         if (empty($this->get())) {
             return 0;
         }
-
+    
         $products = $this->products;
-
+    
         $idProductsPromocode = $this->getProductsIds();
-
+        $idProductsByCategories = $this->getCategoriesProductsIds();
+        $idProductsByGenres = $this->getGenresProductsIds();
+    
+        $applyToAllProducts = empty($idProductsPromocode) && empty($idProductsByCategories) && empty($idProductsByGenres);
+    
         $promocodeDiscount = 0;
         foreach ($products as $product) {
-            if (in_array($product->id, $idProductsPromocode)) {
+            if ($applyToAllProducts || in_array($product->id, array_merge($idProductsPromocode, $idProductsByCategories, $idProductsByGenres))) {
                 $promocodeDiscount += $this->getValue($product->price, $product->qty);
             }
         }
-
+    
         return $promocodeDiscount;
     }
 
@@ -97,11 +96,7 @@ class Promocode
 
     public function getProductsIds()
     {
-        $productsIdsByCategories = $this->getCategoriesProductsIds();
-
-        $productsIds = $this->get()->getProductsIds();
-
-        return array_merge($productsIds, $productsIdsByCategories);
+        return $this->get()->getProductsIds();
     }
 
     private function getCategoriesProductsIds()
@@ -109,11 +104,31 @@ class Promocode
         $categoriesIds = $this->get()->getCategoriesIds();
 
         return Product::select('id')
-        ->when(!empty($categoriesIds), function($q) use ($categoriesIds) {
-            $q->whereIn('id_categories', $categoriesIds);
-        }) 
-        ->whereIn('id', $this->products->pluck('id'))
-        ->get()->pluck('id')->all();
+            ->when(!empty($categoriesIds), function($q) use ($categoriesIds) {
+                $q->whereHas('productCategories', function($q) use ($categoriesIds) {
+                    $q->whereIn('id', $categoriesIds);
+                });
+            })
+            ->whereIn('id', $this->products->pluck('id'))
+            ->get()
+            ->pluck('id')
+            ->all();
+    }
+
+    private function getGenresProductsIds()
+    {
+        $genresIds = $this->get()->getGenresIds();
+
+        return Product::select('id')
+            ->when(!empty($genresIds), function($q) use ($genresIds) {
+                $q->whereHas('genres', function($q) use ($genresIds) {
+                    $q->whereIn('id', $genresIds);
+                });
+            })
+            ->whereIn('id', $this->products->pluck('id'))
+            ->get()
+            ->pluck('id')
+            ->all();
     }
 
     private function clearIfUsed($value)

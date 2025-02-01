@@ -36,6 +36,10 @@ class Order extends Model
 		'paypal_id',
 		'coingate_id',
 		'nowpayments_id',
+		'id_promocodes',
+		'points_used',
+		'promocode_price',
+		'discount_price',
 	];
 
 	protected $attributes = [
@@ -49,6 +53,9 @@ class Order extends Model
 		'paypal_id' => '',
 		'coingate_id' => '',
 		'nowpayments_id' => '',
+		'id_promocodes' => 0,
+		'points_used' => 0,
+		'promocode_price' => 0,
 	];
 
     #region Relationships
@@ -71,6 +78,11 @@ class Order extends Model
 	public function payment() 
 	{
 		return $this->belongsTo(Payment::class, 'id_payments');
+	}
+
+	public function promocode() 
+	{
+		return $this->belongsTo(Promocode::class, 'id_promocodes');
 	}
 
 	#endregion

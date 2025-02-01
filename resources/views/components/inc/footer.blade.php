@@ -166,11 +166,7 @@
 <script src="goodjs/demo.js"></script>
 <!-- END: Scripts -->
 
-
-@startjs('0')
-
 <script>
-
 	// lazy load START
 	/**
 	 * Usage: <img srcset="/images/lazy.svg" src="/images/original.png" alt="">
@@ -449,7 +445,5 @@
 
 </script>
 
-
-@endjs
 
 {!! JSAssembler::get() !!}

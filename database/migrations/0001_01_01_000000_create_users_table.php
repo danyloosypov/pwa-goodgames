@@ -21,6 +21,8 @@ return new class extends Migration
 			$table->string("password");
 			$table->string("admin_lang_tag");
 			$table->string("avatar");
+			$table->integer("points_percent");
+			$table->integer("points");
 			$table->timestamp("created_at")->default(\DB::raw("CURRENT_TIMESTAMP"));
 			$table->timestamp("updated_at")->default(\DB::raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
         });

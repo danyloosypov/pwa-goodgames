@@ -26,22 +26,59 @@ class CartPrice
 
     public function promocode()
     {
-        return 0;
-        //return Promocode::getDiscount();
+        return Promocode::getDiscount();
     }
 
     public function discount() {
-        return 0;
-        //return Discount::getDiscount();
+        return Discount::getDiscount();
     }
 
-    public function userDiscount() {
-        return 0;
-        //return UserDiscount::getDiscount();
-    }
-
-    public function total()
+    public function userBonuses()
     {
-        return $this->subtotal() - $this->promocode() - $this->discount() - $this->userDiscount() ;
+        [$subtractPoints, $availableBonuses] = UserDiscount::getPoints();
+
+        if ($subtractPoints) {
+            return $availableBonuses;
+        }
+
+        return 0;
+    }
+
+    public function total($deliveryPrice = 0)
+    {
+        $subtotal = $this->subtotal();
+
+        $promocodeDiscount = $this->promocode();
+        $generalDiscount = $this->discount();
+        $userBonuses = $this->userBonuses();
+
+        $totalDiscount = $promocodeDiscount + $generalDiscount + $userBonuses;
+
+        $maxAllowedDiscount = $subtotal * 0.5;
+        if ($totalDiscount > $maxAllowedDiscount) {
+            $totalDiscount = $maxAllowedDiscount;
+        }
+
+        return $subtotal - $totalDiscount + $deliveryPrice;
+    }
+
+    public function usedBonuses()
+    {
+        $subtotal = $this->subtotal();
+
+        $promocodeDiscount = $this->promocode();
+        $generalDiscount = $this->discount();
+        $userBonuses = $this->userBonuses();
+
+        $totalDiscount = $promocodeDiscount + $generalDiscount + $userBonuses;
+        $maxAllowedDiscount = $subtotal * 0.5;
+
+        if ($totalDiscount > $maxAllowedDiscount) {
+            $totalDiscount = $maxAllowedDiscount;
+        }
+
+        $remainingDiscountAfterPromocodeAndGeneral = $totalDiscount - $promocodeDiscount - $generalDiscount;
+        
+        return $remainingDiscountAfterPromocodeAndGeneral > 0 ? min($remainingDiscountAfterPromocodeAndGeneral, $userBonuses) : 0;
     }
 }

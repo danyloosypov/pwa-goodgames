@@ -51,7 +51,23 @@
                     <label for="notes">Order Notes:</label>
                     <textarea class="form-control" name="notes" id="notes" placeholder="Order Notes" rows="6" x-model="orderNotes"></textarea>
                 </form>
-
+                @if (Auth::user())
+                    <div class="nk-gap"></div>
+					<div class="bonus-container">
+						<div class="h5 points-title points">
+							На вашому бонусному рахунку <span>{{$user->points}}</span> балів
+						</div>
+						@if ($user->points > 0)
+                            <input type="checkbox" name="subtract_points"
+                            @if($subtractPoints) checked @endif
+                            onchange="subtractPoints('{{ route('api-subtract-points', [], false) }}')"
+                            class="subtract-points" />
+                            Розрахуватися балами
+                        @endif
+					</div>
+                    <div class="nk-gap"></div>
+                @endif
+                <x-checkout.promocode />
                 <!-- START: Order Products -->
                 <div class="nk-gap-3"></div>
                 <h3 class="nk-decorated-h-2">
@@ -184,6 +200,19 @@
                     return input;
                 },
             };
+        }
+
+        async function subtractPoints(route)
+        {
+            const subtractPointsInput = document.querySelector('input[name="subtract_points"]');
+
+            const response = await req.post(route, {
+                subtract_points: subtractPointsInput.checked ? 1 : 0,
+            }, true)
+
+            if (response.success) {
+                document.querySelector('#checkout-info').innerHTML = response.data.checkout_info
+            }
         }
     </script>
 </x-layout>

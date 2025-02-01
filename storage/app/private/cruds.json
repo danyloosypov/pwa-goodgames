@@ -64,6 +64,26 @@
                 "db_title": "avatar",
                 "title": "Avatar",
                 "type": "photo"
+            },
+            {
+                "id": 7,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": "points_percent",
+                "title": "% до балів",
+                "type": "number"
+            },
+            {
+                "id": 8,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": "points",
+                "title": "Бали",
+                "type": "number"
             }
         ],
         "is_dev": 0,
@@ -1521,6 +1541,49 @@
                 "db_title": "nowpayments_id",
                 "title": "NowPayments ID",
                 "type": "text"
+            },
+            {
+                "id": 21,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": null,
+                "title": "Використаний промокод",
+                "type": "relationship",
+                "relationship_count": "single",
+                "relationship_table_name": "promocodes",
+                "relationship_view_field": "title"
+            },
+            {
+                "id": 22,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": "points_used",
+                "title": "Ксть використаних бонусів",
+                "type": "number"
+            },
+            {
+                "id": 23,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": "promocode_price",
+                "title": "Знижка за промокодом",
+                "type": "money"
+            },
+            {
+                "id": 24,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": "discount_price",
+                "title": "Знижка",
+                "type": "money"
             }
         ],
         "is_dev": 0,
@@ -1738,11 +1801,114 @@
                 "id": 1,
                 "required": "optional",
                 "is_visible": true,
-                "lang": 1,
+                "lang": 0,
                 "show_in_list": "yes",
                 "db_title": "title",
                 "title": "Промокод",
                 "type": "text"
+            },
+            {
+                "id": 2,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "yes",
+                "db_title": "value",
+                "title": "Значення",
+                "type": "number"
+            },
+            {
+                "id": 3,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "yes",
+                "db_title": "symbol",
+                "title": "Тип",
+                "type": "enum",
+                "enum": [
+                    "money",
+                    "percent"
+                ]
+            },
+            {
+                "id": 4,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "editable",
+                "db_title": "is_once",
+                "title": "Одноразовий",
+                "type": "checkbox"
+            },
+            {
+                "id": 5,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "yes",
+                "db_title": "date_start",
+                "title": "Дата початку",
+                "type": "datetime"
+            },
+            {
+                "id": 6,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "yes",
+                "db_title": "date_end",
+                "title": "Дата закінчення",
+                "type": "datetime"
+            },
+            {
+                "id": 7,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": null,
+                "title": "Категорії",
+                "type": "relationship",
+                "relationship_count": "many",
+                "relationship_table_name": "product_categories",
+                "relationship_view_field": "title"
+            },
+            {
+                "id": 10,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": null,
+                "title": "Жанри",
+                "type": "relationship",
+                "relationship_count": "many",
+                "relationship_table_name": "genres",
+                "relationship_view_field": "title"
+            },
+            {
+                "id": 8,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": null,
+                "title": "Товари",
+                "type": "relationship",
+                "relationship_count": "many",
+                "relationship_table_name": "products",
+                "relationship_view_field": "title"
+            },
+            {
+                "id": 9,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "editable",
+                "db_title": "is_used",
+                "title": "Використаний",
+                "type": "checkbox"
             }
         ],
         "is_dev": 0,
@@ -1754,6 +1920,188 @@
         "is_docs": 1,
         "is_statistics": 0,
         "model": "\\App\\Models\\Promocode",
+        "default_order": ""
+    },
+    {
+        "table_name": "cart_discounts",
+        "title": "Знижки для кошику",
+        "fields": [
+            {
+                "id": 1,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "yes",
+                "db_title": "money",
+                "title": "Сума",
+                "type": "number"
+            },
+            {
+                "id": 2,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "yes",
+                "db_title": "value",
+                "title": "Знижка",
+                "type": "number"
+            },
+            {
+                "id": 3,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "yes",
+                "db_title": "symbol",
+                "title": "Тип",
+                "type": "enum",
+                "enum": [
+                    "money",
+                    "percent"
+                ]
+            }
+        ],
+        "is_dev": 0,
+        "multilanguage": 0,
+        "is_soft_delete": 0,
+        "sort": 10,
+        "dropdown_slug": "shop",
+        "icon": "",
+        "is_docs": 1,
+        "is_statistics": 0,
+        "model": "\\App\\Models\\CartDiscount",
+        "default_order": ""
+    },
+    {
+        "table_name": "catalog_discounts",
+        "title": "Знижки на товари",
+        "fields": [
+            {
+                "id": 1,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "yes",
+                "db_title": "title",
+                "title": "Назва",
+                "type": "text"
+            },
+            {
+                "id": 2,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "yes",
+                "db_title": "value",
+                "title": "Знижка",
+                "type": "number"
+            },
+            {
+                "id": 3,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "yes",
+                "db_title": "symbol",
+                "title": "Тип",
+                "type": "enum",
+                "enum": [
+                    "money",
+                    "percent"
+                ]
+            },
+            {
+                "id": 4,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": null,
+                "title": "Платформи",
+                "type": "relationship",
+                "relationship_count": "many",
+                "relationship_table_name": "platforms",
+                "relationship_view_field": "title"
+            },
+            {
+                "id": 5,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": null,
+                "title": "Категорії",
+                "type": "relationship",
+                "relationship_count": "many",
+                "relationship_table_name": "product_categories",
+                "relationship_view_field": "title"
+            },
+            {
+                "id": 6,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": null,
+                "title": "Жанри",
+                "type": "relationship",
+                "relationship_count": "many",
+                "relationship_table_name": "genres",
+                "relationship_view_field": "title"
+            },
+            {
+                "id": 7,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": null,
+                "title": "Товари",
+                "type": "relationship",
+                "relationship_count": "many",
+                "relationship_table_name": "products",
+                "relationship_view_field": "title"
+            },
+            {
+                "id": 8,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "editable",
+                "db_title": "is_active",
+                "title": "Активна знижка?",
+                "type": "checkbox"
+            },
+            {
+                "id": 9,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "yes",
+                "db_title": "date_start",
+                "title": "Дата початку",
+                "type": "datetime"
+            },
+            {
+                "id": 10,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "yes",
+                "db_title": "date_end",
+                "title": "Дата кінця",
+                "type": "datetime"
+            }
+        ],
+        "is_dev": 0,
+        "multilanguage": 0,
+        "is_soft_delete": 0,
+        "sort": 10,
+        "dropdown_slug": "shop",
+        "icon": "",
+        "is_docs": 1,
+        "is_statistics": 0,
+        "model": "\\App\\Models\\CatalogDiscount",
         "default_order": ""
     }
 ]

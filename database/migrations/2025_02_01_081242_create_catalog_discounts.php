@@ -13,15 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('promocodes', function (Blueprint $table) {
+        Schema::create('catalog_discounts', function (Blueprint $table) {
             $table->id();
 			$table->string("title");
 			$table->integer("value");
 			$table->string("symbol");
-			$table->tinyInteger("is_once");
+			$table->tinyInteger("is_active");
 			$table->dateTime("date_start")->default("2000-01-01 00:00:00"); // some DBs have errors with the default 0000-00-00 00:00:00
 			$table->dateTime("date_end")->default("2000-01-01 00:00:00"); // some DBs have errors with the default 0000-00-00 00:00:00
-			$table->tinyInteger("is_used");
 			$table->timestamp("created_at")->default(\DB::raw("CURRENT_TIMESTAMP"));
 			$table->timestamp("updated_at")->default(\DB::raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
         });
@@ -34,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('promocodes');
+        Schema::dropIfExists('catalog_discounts');
     }
 };

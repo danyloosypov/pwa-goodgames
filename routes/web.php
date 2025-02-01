@@ -60,6 +60,7 @@ Route::group([
 	Route::post('/api/user-edit', [AccountController::class, 'editUser'])->name('api-user-edit');
 	Route::post('/api/add-to-cart', [CartController::class, 'add'])->name('api-add-to-cart');
 	Route::post('/api/set-promocode', [CartController::class, 'setPromocode'])->name('api-set-promocode');
+	Route::post('/api/subtract-points', [CartController::class, 'subtractPoints'])->name('api-subtract-points');
 	Route::post('/api/send-checkout', [CheckoutController::class, 'send'])->name('api-send-checkout');
 	Route::post('/api/change-payment', [CheckoutController::class, 'changePayment'])->name('api-change-payment');
 

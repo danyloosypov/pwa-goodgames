@@ -9,7 +9,6 @@ use App\Models\Product;
 use App\Models\Order;
 use App\Models\Payment;
 //use App\Services\CheckoutService;
-//use App\View\Components\Inc\Cart\CartInfo;
 use App\View\Components\Cart\Items as CartProducts;
 use App\View\Components\Checkout\Products as CheckoutProducts;
 use App\View\Components\Checkout\Info as CheckoutInfo;
@@ -18,6 +17,8 @@ use Cart;
 use CartPrice;
 use Illuminate\Http\Request;
 use Promocode;
+use UserDiscount;
+use App\Http\Requests\SubtractPointsRequest;
 
 class CartController extends Controller
 {
@@ -61,25 +62,33 @@ class CartController extends Controller
 	{
 		$data = $r->validated();
 
-		$promocode = Promocode::set($data['promocode']);
-
-		if (!$promocode) {
-			return $this->error();
-		}
-
-		$cartInfo = new CartInfo(true);
-
-		if ($data['is_checkout']) {
-
-			$cartInfo = new CartInfo(false);
-
+		try {
+			$promocode = Promocode::set($data['promocode']);
+		} catch (\Exception $e) {
 			return response()->json([
-                'cart_info'             => $cartInfo->render(),
-			]);
+				'error' => 'Invalid or used promocode',
+				'message' => $e->getMessage(),
+			], 400);
 		}
+
+		$checkoutInfo = new CheckoutInfo();
 
 		return response()->json([
-			'cart_info'     => $cartInfo->render(),
+			'checkout_info'	=> $checkoutInfo->render(),
+		]);
+		
+	}
+
+	public function subtractPoints(SubtractPointsRequest $r)
+	{
+		$data = $r->validated();
+
+		UserDiscount::setSubtractPoints($data['subtract_points']);
+
+		$checkoutInfo = new CheckoutInfo();
+
+		return response()->json([
+			'checkout_info'	=> $checkoutInfo->render(),
 		]);
 	}
 }
