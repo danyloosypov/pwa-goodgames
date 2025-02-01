@@ -36,7 +36,7 @@ class AssignBonusPointsListener
             $pointsPercent = $user->points_percent;
         } 
             
-        $pointsToAdd = ($order->total_price * $pointsPercent) / 100;
+        $pointsToAdd = ($order->total * $pointsPercent) / 100;
 
         $user->points += $pointsToAdd;
 

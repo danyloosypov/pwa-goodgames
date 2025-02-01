@@ -40,10 +40,6 @@ Route::get('/clear_cache', function () {
     return response()->json(['message' => 'All caches cleared successfully']);
 });
 
-Route::get('/test', function() {
-	return view('pages.test');
-});
-
 Route::get('/sitemap.xml', [SitemapController::class, 'index']);
 
 Route::group([
