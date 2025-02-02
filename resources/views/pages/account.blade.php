@@ -60,6 +60,9 @@
                                         <li>
                                             <img src="{{ $product->image }}" alt="{{ $product->title }}" width="50">
                                             {{ $product->title }} - ${{ number_format($product->price, 2) }}
+                                            <a href="{{ $product->installer }}" class="nk-btn nk-btn-rounded nk-btn-color-main-1" download>
+                                                Download
+                                            </a>
                                         </li>
                                     @endforeach
                                 </ul>

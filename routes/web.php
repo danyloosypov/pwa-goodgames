@@ -10,6 +10,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\PayPalWebhookController;
 use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Artisan;
 
@@ -50,6 +51,9 @@ Route::group([
 	]
 ], function(){
 	Route::any('/api/handle-payment-callback', [CheckoutController::class, 'handlePaymentCallback'])->name('handle-payment-callback');
+	
+	Route::post('/paypal/webhook', [CheckoutController::class, 'handlePaypalWebhook'])->name('paypal.webhook');
+	Route::get('/register-paypal-webhook', [PayPalWebhookController::class, 'register']);
 
 	Route::post('/api/logout', [AuthController::class, 'logout'])->name('api-logout');
 	Route::post('/api/send-checkout', [CheckoutController::class, 'send'])->name('api-send-checkout');

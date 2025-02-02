@@ -23,7 +23,7 @@ class Fondy
             'currency' => 'UAH',
             'amount' => $order->total * 100,
             'response_url' => URL::signedRoute('thanks', ['order' => $order->id]),
-            'server_callback_url' => route('handle-payment-callback'),
+            'server_callback_url' => route('handle-payment-callback', ['order_id' => $order->id]),
             'sender_email' => $order->email,
             'lang' => 'uk',
             'lifetime' => 36000,

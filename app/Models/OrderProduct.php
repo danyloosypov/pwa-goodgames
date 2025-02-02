@@ -24,6 +24,7 @@ class OrderProduct extends Model
 		'price',
 		'id_products',
 		'id_orders',
+		'installer',
 	];
 
     #region Relationships

@@ -22,7 +22,7 @@ class WayForPayPaymentProcessor implements PaymentProcessorInterface
         $apiVersion = 1;
         $currency = 'UAH';
         $returnUrl = URL::signedRoute('thanks', ['order' => $order->id]); // Success URL
-        $serviceUrl = route('handle-payment-callback'); // Callback URL for the payment result
+        $serviceUrl = route('handle-payment-callback', ['order_id' => $order->id]);
         $orderDate = \Carbon\Carbon::parse($order->date)->timestamp;
         $orderReference = $order->id;
 
@@ -52,7 +52,116 @@ class WayForPayPaymentProcessor implements PaymentProcessorInterface
 
     public function processPayment(Request $request)
     {
-        // Stripe-specific implementation
+        try {
+            // Отримуємо дані запиту
+            $response = $request->all();
+
+            // Витягуємо необхідні поля
+            $merchantSignature = $response['merchantSignature'] ?? null;
+            $orderReference = $response['orderReference'] ?? null;
+            $transactionStatus = $response['transactionStatus'] ?? null;
+            $time = $response['time'] ?? time();
+
+            if (!$merchantSignature || !$orderReference || !$transactionStatus) {
+                throw new \Exception('Invalid callback data.');
+            }
+
+            // Отримуємо замовлення
+            $order = Order::find($orderReference);
+
+            if (!$order) {
+                throw new \Exception('Order not found.');
+            }
+
+            // Перевіряємо підпис
+            if (!$this->verifySignature($response, $order)) {
+                throw new \Exception('Invalid signature.');
+            }
+
+            // Обробляємо статус транзакції
+            switch ($transactionStatus) {
+                case 'Approved':
+                    $order->is_paid = true;
+                    $order->id_order_statuses = OrderStatus::COMPLETED;
+                    break;
+                case 'Declined':
+                    $order->is_paid = false;
+                    $order->id_order_statuses = OrderStatus::FAILED;
+                    break;
+                case 'Refunded':
+                    $order->is_paid = false;
+                    $order->id_order_statuses = OrderStatus::CANCELLED;
+                    break;
+                default:
+                    throw new \Exception('Unknown transaction status.');
+            }
+
+            $order->save();
+
+            // Генеруємо підпис для відповіді
+            $responseSignature = $this->generateResponseSignature($orderReference, 'accept', $time);
+
+            // Повертаємо відповідь з підписом
+            return response()->json([
+                'orderReference' => $orderReference,
+                'status' => 'accept',
+                'time' => $time,
+                'signature' => $responseSignature,
+            ]);
+
+        } catch (\Exception $e) {
+            Log::error('WayForPay callback error: ' . $e->getMessage());
+
+            // Генеруємо підпис для відповіді з помилкою
+            $time = time();
+            $responseSignature = $this->generateResponseSignature($orderReference ?? '', 'reject', $time);
+
+            // Повертаємо помилкову відповідь з підписом
+            return response()->json([
+                'orderReference' => $orderReference ?? '',
+                'status' => 'reject',
+                'time' => $time,
+                'signature' => $responseSignature,
+            ]);
+        }
+    }
+
+
+    private function generateResponseSignature(string $orderReference, string $status, int $time): string
+    {
+        // Формуємо рядок для підпису
+        $signatureString = implode(';', [
+            $orderReference,
+            $status,
+            $time
+        ]);
+
+        // Генеруємо підпис HMAC_MD5 з використанням секретного ключа
+        return hash_hmac('md5', $signatureString, config('app.wayforpay.secret'));
+    }
+
+    private function verifySignature(array $response, Order $order): bool
+    {
+        // Build the signature string in the same way as it was generated
+        $productNames = $order->orderProducts->pluck('title')->toArray(); // Get product names
+        $productPrices = $order->orderProducts->pluck('price')->toArray(); // Get product prices
+        $productCounts = array_fill(0, count($productNames), 1);
+
+        $signatureString = implode(';', [
+            config('app.wayforpay.login'),
+            $response['orderReference'],
+            $response['amount'],
+            $response['currency'],
+            implode(';', $productNames),
+            implode(';', $productCounts),
+            implode(';', $productPrices),
+        ]);
+
+        // Generate the signature with the secret key
+        $expectedSignature = hash_hmac('md5', $signatureString, config('app.wayforpay.secret'));
+
+        // Compare the expected signature with the one sent in the response
+        return $expectedSignature === $response['merchantSignature'];
     }
 
     private function generateSignature(Order $order): string

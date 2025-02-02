@@ -1483,36 +1483,6 @@
                 "type": "text"
             },
             {
-                "id": 15,
-                "required": "optional",
-                "is_visible": true,
-                "lang": 0,
-                "show_in_list": "no",
-                "db_title": "wayforpay_id",
-                "title": "WayForPay ID",
-                "type": "text"
-            },
-            {
-                "id": 16,
-                "required": "optional",
-                "is_visible": true,
-                "lang": 0,
-                "show_in_list": "no",
-                "db_title": "fondy_id",
-                "title": "Fondy ID",
-                "type": "text"
-            },
-            {
-                "id": 17,
-                "required": "optional",
-                "is_visible": true,
-                "lang": 0,
-                "show_in_list": "no",
-                "db_title": "stripe_id",
-                "title": "Stripe ID",
-                "type": "text"
-            },
-            {
                 "id": 18,
                 "required": "optional",
                 "is_visible": true,
@@ -1656,6 +1626,16 @@
                 "relationship_count": "single",
                 "relationship_table_name": "orders",
                 "relationship_view_field": "email"
+            },
+            {
+                "id": 6,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": "installer",
+                "title": "Файл",
+                "type": "file"
             }
         ],
         "is_dev": 1,

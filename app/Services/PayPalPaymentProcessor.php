@@ -82,25 +82,67 @@ class PayPalPaymentProcessor implements PaymentProcessorInterface
      */
     public function processPayment(Request $request): JsonResponse
     {
-        /*$orderId = $request->input('orderId');
-        $paypalOrderId = $request->input('token');
+        $event = $request->input('event_type');
+        $resource = $request->input('resource');
 
-        $accessToken = $this->getAccessToken();
+        switch ($event) {
+            case 'PAYMENT.CAPTURE.COMPLETED':
+                
+                break;
 
-        // Capture the payment
-        $response = Http::withToken($accessToken)
-            ->post($this->baseUrl . "/v2/checkout/orders/{$paypalOrderId}/capture");
+            case 'PAYMENT.CAPTURE.DECLINED':
+                
+                break;
 
-        if ($response->failed()) {
-            return response()->json(['error' => 'Payment failed to capture.'], 500);
+            case 'PAYMENT.CAPTURE.PENDING':
+                
+                break;
+
+            case 'PAYMENT.CAPTURE.REFUNDED':
+                
+                break;
+
+            case 'PAYMENT.CAPTURE.REVERSED':
+                
+                break;
+
+            default:
+                return response()->json(['message' => 'Event not handled'], 200);
         }
 
-        $order = Order::findOrFail($orderId);
-        $order->status = 'paid';
-        $order->save();
-
-        return response()->json(['success' => 'Payment processed successfully.']);*/
+        return response()->json(['message' => 'Webhook handled successfully'], 200);
     }
+
+    public function createWebhook(): JsonResponse
+    {
+        // Get PayPal access token
+        $accessToken = $this->getAccessToken();
+
+        // Define the webhook URL and event types you want to subscribe to
+        $webhookData = [
+            'url' => route('paypal.webhook'),  // Replace with your actual webhook handling route
+            'event_types' => [
+                ['name' => 'PAYMENT.CAPTURE.DECLINED'],
+                ['name' => 'PAYMENT.CAPTURE.COMPLETED'],
+                ['name' => 'PAYMENT.CAPTURE.PENDING'],
+                ['name' => 'PAYMENT.CAPTURE.REFUNDED'],
+                ['name' => 'PAYMENT.CAPTURE.REVERSED'],
+                // You can add more event types if needed
+            ],
+        ];
+
+        // Create the webhook via PayPal API
+        $response = Http::withToken($accessToken)
+            ->post($this->baseUrl . '/v1/notifications/webhooks', $webhookData);
+
+        // Handle failure
+        if ($response->failed()) {
+            return response()->json(['error' => 'Unable to create PayPal webhook.'], 500);
+        }
+
+        return response()->json(['message' => 'Webhook created successfully.']);
+    }
+
 
     /**
      * Get PayPal access token.

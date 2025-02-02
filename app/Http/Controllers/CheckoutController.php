@@ -96,6 +96,7 @@ class CheckoutController extends Controller
             $orderProduct->title = $product->title;
             $orderProduct->image = $product->image;
             $orderProduct->price = $product->price;
+            $orderProduct->installer = $product->installer;
             $orderProduct->id_orders = $order->id;
             $orderProduct->id_products = $product->id;
 
@@ -169,14 +170,21 @@ class CheckoutController extends Controller
         ]);
     }
 
-    public function handlePaymentCallback(Requrest $request)
+    public function handlePaymentCallback(Request $request)
     {
-        $paymentId = session()->get('payment_id', 0);
+        $orderId = $request->input('order_id');
+
+        if (empty($orderId)) {
+            return;
+        }
+
+        $paymentId = Order::where('id', $orderId)->value('id_payments');
 
         if (!empty($paymentId)) {
-            $paymentProcessor = $this->paymentProcessorFactory->getProcessor($data['id_payments']);
+            $paymentProcessor = $this->paymentProcessorFactory->getProcessor($paymentId);
 
             $paymentProcessor->processPayment($request);
         }
     }
+
 }

@@ -46,6 +46,13 @@
                 </ul>
             </div>
             <div class="nk-contacts-right">
+                <div class="langs">
+                    @foreach (Lang::all() as $lang)
+                        <a href="{{ Lang::getUrl($lang->tag) }}" class="lang-tag {{ Lang::get() == $lang->tag ? 'active' : ''}}">
+                            {{$lang->tag}}
+                        </a>
+                    @endforeach
+                </div>
                 <ul class="nk-contacts-icons">
                     <li>
                         <a href="#" data-toggle="modal" data-target="#modalSearch">
@@ -134,18 +141,25 @@
 </div>
 <!-- END: Navbar Mobile -->
 
-@desktopcss
 <style>
+    .nk-contacts-right {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
 
+    .langs {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+    }
+
+    .lang-tag {
+        color: white;
+        text-transform: uppercase;
+    }
+
+    .lang-tag.active {
+        color: #dd163b;
+    }
 </style>
-@mobilecss
-<style>
-
-</style>
-@endcss
-
-@startjs
-<script>
-
-</script>
-@endjs

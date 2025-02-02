@@ -34,13 +34,16 @@ class NowPaymentsPaymentProcessor implements PaymentProcessorInterface
             'pay_currency' => 'btc',
             'order_id' => $order->id, // Unique order ID
             'order_description' => 'Payment for order #' . $order->id,
-            'ipn_callback_url' => route('handle-payment-callback'),
+            'ipn_callback_url' => route('handle-payment-callback', ['order_id' => $order->id]),
             'success_url' => URL::signedRoute('thanks', ['order' => $order->id]),
             'cancel_url' => route('home'),
             'is_fee_paid_by_user' => true, // Optional: whether the user pays the fees
         ]);
 
         $data = $response->json();
+
+        $order->nowpayments_id = $data['id'];
+        $order->save();
 
         return response()->json([
             'url' => $data['invoice_url']
@@ -49,6 +52,34 @@ class NowPaymentsPaymentProcessor implements PaymentProcessorInterface
 
     public function processPayment(Request $request)
     {
-        // Stripe-specific implementation
+        $signature = $request->header('x-nowpayments-sig'); // Signature to verify the request authenticity
+        $orderId = $request->input('order_id');
+        $order = Order::find($orderId);
+
+        if (!$order) {
+            return response()->json(['error' => 'Order not found.'], 404);
+        }
+
+        // Verify the signature to ensure the IPN request is legitimate
+        $payload = $request->getContent();
+        $computedSignature = hash_hmac('sha512', $payload, $this->apiKey);
+
+        if ($signature !== $computedSignature) {
+            Log::error('NOWPayments Callback: Invalid signature for order #' . $order->id);
+            return response()->json(['error' => 'Invalid signature.'], 400);
+        }
+
+        $paymentStatus = $request->input('payment_status');
+
+        if ($paymentStatus === 'finished') {
+            $order->status = OrderStatus::COMPLETED; 
+            $order->save();
+
+        } elseif ($paymentStatus === 'failed') {
+            $order->status = OrderStatus::FAILED;
+            $order->save();
+        }
+
+        return response()->json(['status' => 'success']);
     }
 }
