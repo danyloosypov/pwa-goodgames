@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use CoinGate\CoinGate;
+use App\Events\AssignBonusPointsEvent;
+use App\Events\SendStatus;
 
 class CoingatePaymentProcessor implements PaymentProcessorInterface
 {
@@ -70,6 +72,16 @@ class CoingatePaymentProcessor implements PaymentProcessorInterface
                 case 'paid':
                     $order->is_paid = true;
                     $order->id_order_statuses = OrderStatus::COMPLETED;
+
+                    $user = $order->user;
+                    if ($user)
+                    {
+                        $user->points -= $order->points_used;
+                        $user->save();
+                        event(new AssignBonusPointsEvent($user, $order));
+                    }
+                    
+                    SendStatus::dispatch($order);
                     break;
 
                 case 'invalid':

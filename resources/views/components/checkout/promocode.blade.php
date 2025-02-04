@@ -27,7 +27,6 @@
 
 </style>
 
-@startjs
 <script>
 
     async function setPromocode(form) {
@@ -53,4 +52,3 @@
     }
 
 </script>
-@endjs

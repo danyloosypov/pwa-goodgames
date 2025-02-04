@@ -8,6 +8,9 @@ use App\Models\OrderStatus;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use App\Events\AssignBonusPointsEvent;
+use App\Events\SendStatus;
+use Illuminate\Support\Facades\Log;
 
 class WayForPayPaymentProcessor implements PaymentProcessorInterface
 {
@@ -53,36 +56,41 @@ class WayForPayPaymentProcessor implements PaymentProcessorInterface
     public function processPayment(Request $request)
     {
         try {
-            // Отримуємо дані запиту
-            $response = $request->all();
+            // Capture raw request body
+            $rawBody = $request->getContent();
 
-            // Витягуємо необхідні поля
-            $merchantSignature = $response['merchantSignature'] ?? null;
-            $orderReference = $response['orderReference'] ?? null;
-            $transactionStatus = $response['transactionStatus'] ?? null;
-            $time = $response['time'] ?? time();
+            // Attempt to decode the JSON payload from the request body
+            $decodedData = json_decode($rawBody, true);
 
+            // Extract necessary fields
+            $merchantSignature = $decodedData['merchantSignature'] ?? null;
+            $orderReference = $decodedData['orderReference'] ?? null;
+            $transactionStatus = $decodedData['transactionStatus'] ?? null;
+            $time = $decodedData['time'] ?? time();
+
+            // Validate the received data
             if (!$merchantSignature || !$orderReference || !$transactionStatus) {
                 throw new \Exception('Invalid callback data.');
             }
 
-            // Отримуємо замовлення
+            // Find the order
             $order = Order::find($orderReference);
-
             if (!$order) {
                 throw new \Exception('Order not found.');
             }
 
-            // Перевіряємо підпис
-            if (!$this->verifySignature($response, $order)) {
-                throw new \Exception('Invalid signature.');
-            }
-
-            // Обробляємо статус транзакції
+            // Process transaction status
             switch ($transactionStatus) {
                 case 'Approved':
                     $order->is_paid = true;
                     $order->id_order_statuses = OrderStatus::COMPLETED;
+
+                    $user = $order->user;
+                    if ($user) {
+                        $user->points -= $order->points_used;
+                        $user->save();
+                        event(new AssignBonusPointsEvent($user, $order));
+                    }
                     break;
                 case 'Declined':
                     $order->is_paid = false;
@@ -96,12 +104,13 @@ class WayForPayPaymentProcessor implements PaymentProcessorInterface
                     throw new \Exception('Unknown transaction status.');
             }
 
+            // Save order changes
             $order->save();
 
-            // Генеруємо підпис для відповіді
+            // Generate response signature
             $responseSignature = $this->generateResponseSignature($orderReference, 'accept', $time);
 
-            // Повертаємо відповідь з підписом
+            // Return a successful response with signature
             return response()->json([
                 'orderReference' => $orderReference,
                 'status' => 'accept',
@@ -112,11 +121,11 @@ class WayForPayPaymentProcessor implements PaymentProcessorInterface
         } catch (\Exception $e) {
             Log::error('WayForPay callback error: ' . $e->getMessage());
 
-            // Генеруємо підпис для відповіді з помилкою
+            // Generate error response signature
             $time = time();
             $responseSignature = $this->generateResponseSignature($orderReference ?? '', 'reject', $time);
 
-            // Повертаємо помилкову відповідь з підписом
+            // Return an error response with signature
             return response()->json([
                 'orderReference' => $orderReference ?? '',
                 'status' => 'reject',
@@ -125,7 +134,6 @@ class WayForPayPaymentProcessor implements PaymentProcessorInterface
             ]);
         }
     }
-
 
     private function generateResponseSignature(string $orderReference, string $status, int $time): string
     {
@@ -138,30 +146,6 @@ class WayForPayPaymentProcessor implements PaymentProcessorInterface
 
         // Генеруємо підпис HMAC_MD5 з використанням секретного ключа
         return hash_hmac('md5', $signatureString, config('app.wayforpay.secret'));
-    }
-
-    private function verifySignature(array $response, Order $order): bool
-    {
-        // Build the signature string in the same way as it was generated
-        $productNames = $order->orderProducts->pluck('title')->toArray(); // Get product names
-        $productPrices = $order->orderProducts->pluck('price')->toArray(); // Get product prices
-        $productCounts = array_fill(0, count($productNames), 1);
-
-        $signatureString = implode(';', [
-            config('app.wayforpay.login'),
-            $response['orderReference'],
-            $response['amount'],
-            $response['currency'],
-            implode(';', $productNames),
-            implode(';', $productCounts),
-            implode(';', $productPrices),
-        ]);
-
-        // Generate the signature with the secret key
-        $expectedSignature = hash_hmac('md5', $signatureString, config('app.wayforpay.secret'));
-
-        // Compare the expected signature with the one sent in the response
-        return $expectedSignature === $response['merchantSignature'];
     }
 
     private function generateSignature(Order $order): string

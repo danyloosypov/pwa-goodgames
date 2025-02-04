@@ -25,7 +25,7 @@ use UserDiscount;
 use App\Contracts\PaymentProcessorFactoryInterface;
 use DigitalThreads\LiqPay\Exceptions\InvalidCallbackRequestException;
 use DigitalThreads\LiqPay\LiqPay;
-use App\Events\AssignBonusPointsEvent;
+use Illuminate\Support\Facades\Log;
 
 class CheckoutController extends Controller
 {
@@ -149,18 +149,6 @@ class CheckoutController extends Controller
         if (empty($order)) {
             abort(404);
         }
-
-        //TODO: move to payment callback
-        $user = $order->user;
-		if ($user)
-		{
-			$user->points -= $order->points_used;
-			$user->save();
-			event(new AssignBonusPointsEvent($user, $order));
-		}
-        
-        SendStatus::dispatch($order);
-        //TODO
 
         //$single = Single::get("thanks");
 

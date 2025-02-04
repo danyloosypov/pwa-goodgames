@@ -11,7 +11,8 @@ use Illuminate\Http\Request;
 use Stripe\Checkout\Session;
 use Stripe\Exception\ApiErrorException;
 use Stripe\Stripe;
-
+use App\Events\AssignBonusPointsEvent;
+use App\Events\SendStatus;
 
 class StripePaymentProcessor implements PaymentProcessorInterface
 {

@@ -8,6 +8,8 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\URL;
+use App\Events\AssignBonusPointsEvent;
+use App\Events\SendStatus;
 
 class PayPalPaymentProcessor implements PaymentProcessorInterface
 {

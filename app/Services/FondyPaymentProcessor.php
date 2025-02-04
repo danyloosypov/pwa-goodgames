@@ -10,6 +10,8 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Fondy;
 use Illuminate\Support\Facades\Log;
+use App\Events\AssignBonusPointsEvent;
+use App\Events\SendStatus;
 
 class FondyPaymentProcessor implements PaymentProcessorInterface
 {
@@ -27,6 +29,12 @@ class FondyPaymentProcessor implements PaymentProcessorInterface
         try {
             // Get the posted data from Fondy
             $data = $request->all();
+
+            Log::info('WayForPay callback important data:', [
+                'data' => $data,
+                'order_id' => $data['order_id'],
+                'isValidFondySignature' => $this->isValidFondySignature($data),
+            ]);
 
             // Validate the Fondy signature
             if (!$this->isValidFondySignature($data)) {
@@ -46,6 +54,16 @@ class FondyPaymentProcessor implements PaymentProcessorInterface
                 case 'approved':
                     $order->is_paid = true;
                     $order->id_order_statuses = OrderStatus::COMPLETED;
+
+                    $user = $order->user;
+                    if ($user)
+                    {
+                        $user->points -= $order->points_used;
+                        $user->save();
+                        event(new AssignBonusPointsEvent($user, $order));
+                    }
+                    
+                    SendStatus::dispatch($order);
                     break;
 
                 case 'declined':

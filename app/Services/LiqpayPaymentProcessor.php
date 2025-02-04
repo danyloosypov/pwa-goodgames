@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Liqpay;
+use App\Events\AssignBonusPointsEvent;
+use App\Events\SendStatus;
+use Illuminate\Support\Facades\Log;
 
 class LiqpayPaymentProcessor implements PaymentProcessorInterface
 {
@@ -58,6 +61,16 @@ class LiqpayPaymentProcessor implements PaymentProcessorInterface
                 $order->is_paid = true;
                 $order->id_order_statuses = OrderStatus::COMPLETED;
 
+                $user = $order->user;
+                if ($user)
+                {
+                    $user->points -= $order->points_used;
+                    $user->save();
+                    event(new AssignBonusPointsEvent($user, $order));
+                }
+                
+                SendStatus::dispatch($order);
+
             } elseif ($status == 'failure') {
                 $order->id_order_statuses = OrderStatus::FAILED;
 
@@ -67,8 +80,6 @@ class LiqpayPaymentProcessor implements PaymentProcessorInterface
 
             $order->liqpay_id = $decodedData['payment_id'];
 
-            $order->is_paid = false;
-            $order->id_order_statuses = OrderStatus::FAILED;
             $order->save();
 
         } catch (InvalidCallbackRequestException $e) {

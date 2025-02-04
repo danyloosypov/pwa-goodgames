@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use App\Events\AssignBonusPointsEvent;
+use App\Events\SendStatus;
 
 class NowPaymentsPaymentProcessor implements PaymentProcessorInterface
 {
@@ -74,6 +76,16 @@ class NowPaymentsPaymentProcessor implements PaymentProcessorInterface
         if ($paymentStatus === 'finished') {
             $order->status = OrderStatus::COMPLETED; 
             $order->save();
+
+            $user = $order->user;
+            if ($user)
+            {
+                $user->points -= $order->points_used;
+                $user->save();
+                event(new AssignBonusPointsEvent($user, $order));
+            }
+            
+            SendStatus::dispatch($order);
 
         } elseif ($paymentStatus === 'failed') {
             $order->status = OrderStatus::FAILED;

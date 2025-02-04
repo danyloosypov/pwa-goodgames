@@ -44,7 +44,6 @@ class Order extends Model
 		'is_paid' => 0,
 		'comment' => '',
 		'liqpay_id' => '',
-		'stripe_id' => '',
 		'paypal_id' => '',
 		'coingate_id' => '',
 		'nowpayments_id' => '',

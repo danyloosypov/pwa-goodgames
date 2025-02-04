@@ -444,6 +444,3 @@
     }
 
 </script>
-
-
-{!! JSAssembler::get() !!}

@@ -34,3 +34,5 @@
 @endif
 
 <title>{{ __('fastadminpanel.admin_panel') }}</title>
+
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
