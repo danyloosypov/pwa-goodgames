@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use CoinGate\CoinGate;
 use App\Events\AssignBonusPointsEvent;
 use App\Events\SendStatus;
+use Illuminate\Support\Facades\Log;
 
 class CoingatePaymentProcessor implements PaymentProcessorInterface
 {
@@ -33,13 +34,13 @@ class CoingatePaymentProcessor implements PaymentProcessorInterface
             'description'       =>  '',
         );
 
-        $order = $client->order->create($params);
+        $coingateOrder = $client->order->create($params);
 
         $order->coingate_id = $coingateOrder->id;
         $order->save();
 
         return response()->json([
-            'url' => $order->payment_url,
+            'url' => $coingateOrder->payment_url,
         ]);
     }
 
@@ -48,11 +49,6 @@ class CoingatePaymentProcessor implements PaymentProcessorInterface
         try {
             // Get the posted data from CoinGate
             $data = $request->all();
-
-            // Verify the CoinGate token to ensure the request is valid
-            if (!$this->isValidCoinGateCallback($data)) {
-                throw new \Exception('Invalid CoinGate callback signature.');
-            }
 
             // Retrieve the order using the CoinGate order_id
             $orderId = $data['order_id'] ?? null;
@@ -108,16 +104,4 @@ class CoingatePaymentProcessor implements PaymentProcessorInterface
         }
     }
 
-    /**
-     * Validates the CoinGate callback.
-     *
-     * @param array $data
-     * @return bool
-     */
-    private function isValidCoinGateCallback(array $data): bool
-    {
-        // Check if token matches
-        $expectedToken = config('app.coingate.token');
-        return $data['token'] === $expectedToken;
-    }
 }
