@@ -17,35 +17,13 @@
         <div class="container">
             <x-inc.banner />
             <div>
-                <!-- START: Categories -->
                 <div class="nk-gap-2"></div>
                 <div class="row vertical-gap">
-                    @foreach ($platforms as $platform)
-                        <div class="col-lg-4">
-                            <div class="nk-feature-1 platform" 
-                                data-platform="{{ $platform->id }}"
-                                style="{{ $platformActive == $platform->id ? 'background-color: #75001c;' : '' }}">
-                                <div class="nk-feature-icon">
-                                    <img src="{{ $platform->icon }}" alt="">
-                                </div>
-                                <div class="nk-feature-cont">
-                                    <h3 class="nk-feature-title">
-                                        <div>{{ $platform->title }}</div>
-                                    </h3>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-                <!-- END: Categories -->
-
-                <div class="nk-gap-2"></div>
-                <div class="row vertical-gap">
-                    <div class="col-lg-8">
+                    <div class="col-lg-12">
                         <!-- START: Products -->
                         <div class="row vertical-gap">
                             @foreach ($products as $product)
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="nk-product-cat">
                                         <a class="nk-product-image" href="{{ route('product', ['product' => $product->slug]) }}">
                                             <img src="{{ $product->image }}" alt="Product image">
@@ -75,71 +53,6 @@
                         </div>
                         <div class="nk-gap-2"></div>
                         <!-- END: Products -->
-                        {{ $products->links() }}
-                    </div>
-
-                    <div class="col-lg-4">
-                        <aside class="nk-sidebar nk-sidebar-right nk-sidebar-sticky">
-                            <div class="nk-widget nk-widget-highlighted">
-                                <h4 class="nk-widget-title">
-                                    <span>
-                                        <span class="text-main-1">Category</span> Menu 
-                                    </span>
-                                </h4>
-                                <div class="nk-widget-content">
-                                    <ul class="nk-widget-categories">
-                                        @foreach ($categoriesCollection as $category)
-                                            <li>
-                                                <input type="checkbox" class="category-filter" data-category-id="{{ $category->id }}">
-                                                <label>{{ $category->title }}</label>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="nk-widget nk-widget-highlighted">
-                                <h4 class="nk-widget-title">
-                                    <span>
-                                        <span class="text-main-1">Genres</span> Menu 
-                                    </span>
-                                </h4>
-                                <div class="nk-widget-content">
-                                    <ul class="nk-widget-categories">
-                                        @foreach ($genresCollection as $genre)
-                                            <li>
-                                                <input type="checkbox" class="genre-filter" data-genre-id="{{ $genre->id }}">
-                                                <label>{{ $genre->title }}</label>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="nk-widget nk-widget-highlighted">
-                                <h4 class="nk-widget-title">
-                                    <span>
-                                        <span class="text-main-1">Price</span> Filter
-                                    </span>
-                                </h4>
-
-                                <div class="nk-widget-content">
-                                    <div class="nk-input-slider">
-                                        <input type="range" id="price-range" min="{{ $minPriceValue }}" max="{{ $maxPriceValue }}" value="{{ $minPriceValue }}">
-                                        <div class="nk-gap"></div>
-                                        <div>
-                                            <div class="text-white mt-4 float-left">
-                                                PRICE: 
-                                                <strong class="text-main-1">₴ <span id="price-min">{{ $minPriceValue }}</span></strong> 
-                                                - <strong class="text-main-1">₴ <span id="price-max">{{ $maxPriceValue }}</span></strong>
-                                            </div>
-                                            <button class="nk-btn nk-btn-rounded nk-btn-color-white float-right" id="apply-price-filter">Apply</button>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </aside>
                     </div>
                 </div>
             </div>            
