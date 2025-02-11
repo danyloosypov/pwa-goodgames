@@ -1554,6 +1554,16 @@
                 "db_title": "discount_price",
                 "title": "Знижка",
                 "type": "money"
+            },
+            {
+                "id": 25,
+                "required": "optional",
+                "is_visible": true,
+                "lang": 0,
+                "show_in_list": "no",
+                "db_title": "fondy_payment_id",
+                "title": "Fondy payment id",
+                "type": "text"
             }
         ],
         "is_dev": 0,

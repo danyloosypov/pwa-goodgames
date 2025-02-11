@@ -111,12 +111,15 @@ class WayForPayPaymentProcessor implements PaymentProcessorInterface
             $responseSignature = $this->generateResponseSignature($orderReference, 'accept', $time);
 
             // Return a successful response with signature
-            return response()->json([
+            // Prepare the response
+            $response = [
                 'orderReference' => $orderReference,
                 'status' => 'accept',
                 'time' => $time,
                 'signature' => $responseSignature,
-            ]);
+            ];
+
+            return response()->json($response);
 
         } catch (\Exception $e) {
             Log::error('WayForPay callback error: ' . $e->getMessage());

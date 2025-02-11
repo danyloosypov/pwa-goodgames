@@ -37,6 +37,7 @@ class Order extends Model
 		'points_used',
 		'promocode_price',
 		'discount_price',
+		'fondy_payment_id',
 	];
 
 	protected $attributes = [
@@ -45,6 +46,7 @@ class Order extends Model
 		'comment' => '',
 		'liqpay_id' => '',
 		'paypal_id' => '',
+		'fondy_payment_id' => '',
 		'coingate_id' => '',
 		'nowpayments_id' => '',
 		'id_promocodes' => 0,

@@ -23,13 +23,16 @@ class Fondy
             'currency' => 'UAH',
             'amount' => $order->total * 100,
             'response_url' => URL::signedRoute('thanks', ['order' => $order->id]),
-            'server_callback_url' => route('handle-payment-callback', ['order_id' => $order->id]),
+            'server_callback_url' => route('handle-fondy-callback', ['order_id' => $order->id]),
             'sender_email' => $order->email,
             'lang' => 'uk',
             'lifetime' => 36000,
         ];
         $url = \Cloudipsp\Checkout::url($data);
         $data = $url->getData();
+
+        $order->fondy_payment_id = $data['payment_id'];
+        $order->save();
 
         return $data['checkout_url'];
     }

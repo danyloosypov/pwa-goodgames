@@ -30,7 +30,7 @@ class FondyPaymentProcessor implements PaymentProcessorInterface
             // Get the posted data from Fondy
             $data = $request->all();
 
-            Log::info('WayForPay callback important data:', [
+            Log::info('Fondy callback important data:', [
                 'data' => $data,
                 'order_id' => $data['order_id'],
                 'isValidFondySignature' => $this->isValidFondySignature($data),
@@ -42,12 +42,18 @@ class FondyPaymentProcessor implements PaymentProcessorInterface
             }
 
             // Retrieve the order using the order_id or order_reference from the request
-            $orderId = $data['order_id'] ?? null;
-            $order = Order::find($orderId);
+            $payment_id = $data['payment_id'] ?? null;
+            $order = Order::where('fondy_payment_id', $payment_id)->first();
 
             if (!$order) {
                 throw new \Exception('Order not found.');
             }
+
+            Log::info('Fondy callback important data:', [
+                'data' => $data,
+                'order_id' => $data['order_id'],
+                'isValidFondySignature' => $this->isValidFondySignature($data),
+            ]);
 
             // Process payment based on Fondy transaction status
             switch ($data['order_status']) {

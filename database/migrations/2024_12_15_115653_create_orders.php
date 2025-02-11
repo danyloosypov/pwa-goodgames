@@ -34,6 +34,7 @@ return new class extends Migration
 			$table->integer("points_used");
 			$table->decimal("promocode_price", 15, 2);
 			$table->decimal("discount_price", 15, 2);
+			$table->string("fondy_payment_id");
 			$table->timestamp("created_at")->default(\DB::raw("CURRENT_TIMESTAMP"));
 			$table->timestamp("updated_at")->default(\DB::raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
         });

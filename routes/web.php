@@ -51,6 +51,7 @@ Route::group([
 	]
 ], function(){
 	Route::any('/api/handle-payment-callback', [CheckoutController::class, 'handlePaymentCallback'])->name('handle-payment-callback');
+	Route::any('/api/handle-fondy-callback', [CheckoutController::class, 'handleFondyCallback'])->name('handle-fondy-callback');
 	
 	Route::post('/paypal/webhook', [CheckoutController::class, 'handlePaypalWebhook'])->name('paypal.webhook');
 	Route::get('/register-paypal-webhook', [PayPalWebhookController::class, 'register']);

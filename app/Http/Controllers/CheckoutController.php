@@ -175,4 +175,17 @@ class CheckoutController extends Controller
         }
     }
 
+    public function handleFondyCallback(Request $request)
+    {
+        $data = $request->all();
+
+        Log::info('Fondy callback important data:', [
+            'data' => $data,
+        ]);
+
+        $paymentProcessor = $this->paymentProcessorFactory->getProcessor(3);
+
+        $paymentProcessor->processPayment($request);
+    }
+
 }
