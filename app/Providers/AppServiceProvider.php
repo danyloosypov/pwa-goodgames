@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\ArticleRepository;
+use App\Repositories\ArticleRepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,6 +15,8 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->singleton(\App\Contracts\PaymentProcessorFactoryInterface::class, \App\Services\PaymentProcessorFactory::class);
         date_default_timezone_set('Europe/Kyiv');
+
+        $this->app->bind(ArticleRepositoryInterface::class, ArticleRepository::class);
     }
 
     /**

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\PayPalPaymentProcessor;
 use Illuminate\Http\JsonResponse;
 
-class PaymentController extends Controller
+class PayPalWebhookController extends Controller
 {
     protected $paymentProcessor;
 
