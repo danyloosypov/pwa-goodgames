@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Payment;
 use App\Models\OrderStatus;
 use App\Models\Order;
+use App\Models\User;
 use App\Models\OrderProduct;
 use App\Http\Requests\CheckoutSendRequest;
 use App\Events\SendOrder;
@@ -26,6 +27,8 @@ use App\Contracts\PaymentProcessorFactoryInterface;
 use DigitalThreads\LiqPay\Exceptions\InvalidCallbackRequestException;
 use DigitalThreads\LiqPay\LiqPay;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\NewOrder;
 
 class CheckoutController extends Controller
 {
@@ -103,7 +106,10 @@ class CheckoutController extends Controller
             $orderProduct->save();
         }
 
-        SendOrder::dispatch($order);
+        $admin = User::where('email', env('ADMIN_EMAIL'))->first();
+
+        Notification::send($admin, new NewOrder($order));
+        //SendOrder::dispatch($order);
 
         $paymentProcessor = $this->paymentProcessorFactory->getProcessor($data['id_payments']);
 
