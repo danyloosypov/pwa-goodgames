@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ArticleResource;
 use App\Repositories\ArticleRepositoryInterface;
 use Illuminate\Http\Request;
+use App\Http\Requests\ArticleRequest;
 
 class ArticlesController extends Controller
 {
@@ -14,6 +15,7 @@ class ArticlesController extends Controller
     public function __construct(ArticleRepositoryInterface $articleRepository)
     {
         $this->articleRepository = $articleRepository;
+        $this->middleware('auth:sanctum',   ['only' => ['store', 'update', 'delete']]);
     }
 
     /**
@@ -31,10 +33,10 @@ class ArticlesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
         // Create a new article
-        $article = $this->articleRepository->create($request->all());
+        $article = $this->articleRepository->create($request->getDTO()->toArray());
 
         return new ArticleResource($article);
     }
@@ -53,10 +55,10 @@ class ArticlesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(ArticleRequest $request, int $id)
     {
         // Update the article
-        $article = $this->articleRepository->update($id, $request->all());
+        $article = $this->articleRepository->update($id, $request->getDTO()->toArray());
 
         return new ArticleResource($article);
     }
